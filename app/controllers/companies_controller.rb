@@ -4,7 +4,11 @@ class CompaniesController < ApplicationController
   before_filter :add_companies, :only => [:index]
 
   def index
-    @investors = @company.investors
+    if @company
+      @investors = @company.investors
+    else
+      render :json => {:status => "Company Doesn't Exist"}
+    end
   end
 
   private
@@ -17,8 +21,12 @@ class CompaniesController < ApplicationController
 
   def add_companies
     if @company.nil?
-      Api::CrunchbaseData.new(params[:name]).fetch
-      @company = Company.find_by_name(params[:name])
+      begin
+        Api::CrunchbaseData.new(params[:name]).fetch
+        @company = Company.find_by_name(params[:name])
+      rescue => e
+        @company = nil
+      end
     end
   end
 
