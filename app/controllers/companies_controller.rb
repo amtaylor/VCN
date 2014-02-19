@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
 
   def index
     if @company
-      @investors = Investor.select(:name).uniq
+      @investors = Investor.select(:name).uniq.order("name ASC")
     else
       render :json => {:status => "Company Doesn't Exist"}
     end

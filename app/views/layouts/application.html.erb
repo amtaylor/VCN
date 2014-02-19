@@ -205,7 +205,7 @@
 										<% @investors.each do |investor| %>
 											<tr>
 												<td> <%= investor.name %> </td>
-												<td> </td>
+												<td> <%= Investor.company_for_investor(investor) %> </td>
 											</tr>
 										<% end %>
 
@@ -226,9 +226,6 @@
 											<td>Keith Rabois</td>
 											<td>Square</td>
 										</tr>
-
-
-
 
 
 									</tbody>
