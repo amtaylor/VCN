@@ -1,2 +1,4 @@
 object @investor
-attributes :id, :name, :crunchbase_id
+node(:companies) do 
+  @companies
+end

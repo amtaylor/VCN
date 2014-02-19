@@ -1,3 +1,2 @@
-object @company
+collection @investors
 attributes :id, :name
-child(:investors){extends 'investors/show'}
