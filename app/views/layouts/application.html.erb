@@ -162,16 +162,14 @@
 								
 								<ul class="list-unstyled">
 
-									<!--
-					<% if false %>
+						
 									<% @companies.each do |company| %>
 										<li>
-											<%= company.title %>
-											<%= link_to "Remove", company, method: :delete %>
+											<%= company.name %>
+											
 										</li>
 									<% end %>
-					<% end %>
-									-->
+				
 
 									<!-- take out the sample table below once backend is ready -->
 
@@ -232,6 +230,16 @@
 											<td>Keith Rabois</td>
 											<td>Square</td>
 										</tr>
+
+
+										<% @investors.each do |investor| %>
+											<tr>
+												<td> <%= investor.name %> </td>
+												<td> </td>
+											</tr>
+										<% end %>
+
+
 									</tbody>
 								</table>
 					  
