@@ -202,16 +202,12 @@
 									</thead>
 									<tbody>
 										
-										<!--
-						<% if false %>
-											<% @investors.each do |investor| %>
-											  <tr>
-											    <td><%= investor.name %></td>
-											    <td><%= investor.companies %></td>
-											  </tr>
-											<% end %>
-						<% end %>
-										-->
+										<% @investors.each do |investor| %>
+											<tr>
+												<td> <%= investor.name %> </td>
+												<td> <%= Investor.company_for_investor(investor) %> </td>
+											</tr>
+										<% end %>
 
 										<!-- take out the sample table below once backend is ready -->
 										<tr>
@@ -230,14 +226,6 @@
 											<td>Keith Rabois</td>
 											<td>Square</td>
 										</tr>
-
-
-										<% @investors.each do |investor| %>
-											<tr>
-												<td> <%= investor.name %> </td>
-												<td> </td>
-											</tr>
-										<% end %>
 
 
 									</tbody>
@@ -308,6 +296,22 @@
 			$(".alert").alert()
 		</script>
 		
+		<!-- This is some JS to not leave the page when the form is submitted (I think) 
+
+		<script>
+			$(document).ready(function(){
+			   var $form = $('form');
+			   $form.submit(function(){
+			      $.post($(this).attr('action'), $(this).serialize(), function(response){
+			            // do something here on success
+			      },'json');
+			      return false;
+			   });
+			});
+		</script>
+
+		-->
+
 <%= yield %>
 
 </body>
