@@ -205,7 +205,12 @@
 										<% @investors.each do |investor| %>
 											<tr>
 												<td> <%= investor.name %> </td>
-												<td> <%= Investor.company_for_investor(investor) %> </td>
+												<td>
+													<% Investor.company_for_investor(investor).each do |vc_company| %>
+														<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+													<% end %>
+													
+												</td>
 											</tr>
 										<% end %>
 
@@ -247,7 +252,7 @@
 								data: <a href="http://www.crunchbase.com/" title="CrunchBase">CrunchBase</a>
 
 								<div class="copyright">
-									&copy; 2013 VCN
+									&copy; 2014 VCN
 								</div>
 							</div>
 						</div>
