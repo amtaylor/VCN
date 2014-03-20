@@ -2,7 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-  <title><%= content_for?(:title) ? yield(:title) : "VC Nemesis" %></title>
+
+	<%= yield :head %>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Bootstrap (not needed because of netdna CDN)
@@ -33,264 +35,14 @@
 	  <script src="../../assets/js/html5shiv.js"></script>
 	  <script src="../../assets/js/respond.min.js"></script>
 	<![endif]-->
-  <%= yield(:head) %>
+  
 </head>
 <body>
+
+	<%= render 'layouts/header' %>
+	<%= yield %>
+	<%= render 'layouts/footer' %>	
 	
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">					
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				 </button>
-				
-				<a class="navbar-brand" href="#">
-					<img class="logo hidden-xs" src="images/VCN_logo_50px.png" alt="VCN logo" height="40px" width="40px">
-					<div class="name">
-						VC <span class="enemy"><strong> Nemesis </strong></span>
-						</br>
-						<span class="tagline hidden-xs"> some VC's are not your friends </span>
-						<span class="tagline visible-xs">&exist; VC: VC != friend </span>
-					</div>
-				</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<button type="button" class="btn btn-link navbar-btn">
-							<span class="glyphicon glyphicon-stats"></span>
-							Analysis
-						</button>
-					</li>
-					<li>
-						<button type="button" class="btn btn-danger navbar-btn">Sign Up</button>
-					</li>
-					<li>
-						<button type="button" class="btn btn-default navbar-btn">Sign In</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="info text-center">
-		<div class="collapse-group">
-		
-			<div class="info2">
-				<div class="info3 in viewdetails">
-
-					<div class="container">
-						<div class ="row">
-		
-							<div class="col-md-12">
-								<h1>A free tool to keep track of who’s invested in the competition.</h1>
-								<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
-								<h3>examples:
-									<a href="#" title="Photo Sharing"><em>Photo Sharing</em></a>, 
-									<a href="#" title="Home 3D Printing"><em>Home 3D Printing</em></a>
-								</h3>
-								
-								<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>&and;</strong></button>
-							</div>
-						</div>
-					</div> <!-- containter -->
-				</div>
-			</div>
-			
-			
-		<button type="button" class="btn btn-default opn collapse viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>more info &or; </strong></button>				
-		
-		</div>
-	
-	
-	</div> <!-- /info  -->
-
-
-	<div class="container">
-	
-		<div class ="row">
-		
-			<div class="col-md-12">
-  
-				<div class="row">
-		  
-					<div class="col-md-4">
-						<div class="second">
-							<h3>Add competitors:</h3>		
-
-							<form class="form-inline" role="form" action="http://localhost:3000/company" method="get">
-			
-								<div class="form-group">
-									<label class="sr-only" for="exampleCompany">Company Name</label>
-									<!-- Always add labels- Screen readers will have trouble with your forms if you don't include a label for every input. For these inline forms, you can hide the labels using the .sr-only class. -->
-						
-										<input type="text" class="form-control" id="companyName1" name="name" placeholder="enter competitor name">
-								
-								</div>					
-				
-								<div class="form-group">
-								
-										<button type="submit" class="btn btn-default" data-loading-text="searching...">add</button>
-								
-								</div>
-													
-							</form>
-
-							<!-- typeahead version
-							<div class="row">
-								<div class="col-md-10">
-									<input type="text" class="form-control typeahead" id="search" data-provide="typeahead" data-items="4" placeholder="enter competitor name here" autocomplete="off">
-									
-								</div>
-							</div>
-							-->
-
-							<div class="row">
-									<div class="col-lg-6">
-
-									<!-- only show this if no company is found
-									<div class="alert alert-danger">
-									  	<p>company not found</p>
-									</div>
-									-->
-
-									<!-- only show this if no company is found
-									<div class="alert alert-success">
-									  	<p>company added</p>
-									</div>
-									-->
-								</div>
-							</div>
-
-							
-							<ul class="list-unstyled">
-
-					
-								<% @companies.each do |company| %>
-									<li>
-										<%= company.name %>
-										<%= link_to "delete this", company, method: :delete %>
-									</li>
-								<% end %>
-			
-
-								<!-- take out the sample table below once backend is ready -->
-
-								<li>
-									Twitter<button class="close">&times;</button>
-								</li>
-								<li>
-									Groupon<button class="close">&times;</button>
-								</li>
-								<li>
-									Zynga<button class="close">&times;</button>
-								</li>
-								<li>
-									Facebook<button class="close">&times;</button>
-								</li>
-							</ul>
-						</div>
-					</div>  <!-- /col-md-4 -->
-			
-					<div class="col-md-8">
-						<div class="second">
-							<h3>Know your VC nemeses:</h3>
-				  
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>VC Nemeses</th>
-										<th>Competitors they’ve invested in</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-									<% @investors.each do |investor| %>
-										<tr>
-											<td> <%= investor.name %> </td>
-											<td>
-												<% Investor.company_for_investor(investor).each do |vc_company| %>
-													<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
-												<% end %>
-												
-											</td>
-										</tr>
-									<% end %>
-
-									<!-- take out the sample table below once backend is ready -->
-									<tr>
-										<td>Andressen Horowitz</td>
-										<td>Square, Twitter, <span class="text-muted"> Google (exited)</span> </td>
-									</tr>
-									<tr>
-										<td>KPCB</td>
-										<td>Kabam, <span class="text-muted"> Zynga (exited) </span>, Rocket Fuel</td>
-									</tr>
-									<tr>
-										<td>Sequoia</td>
-										<td>Square, Twitter</td>
-									</tr>
-									<tr>
-										<td>Keith Rabois</td>
-										<td>Square</td>
-									</tr>
-
-
-								</tbody>
-							</table>
-				  
-							<p class="note">
-								<em>note: some VCs may be willing to invest in companies that compete with companies already in their portfolio, but working with them is probably
-								<a href="http://www.usv.com/2007/01/why-we-dont-inv.php" target="_blank"> not a great idea. </a> </em>
-							</p>
-						</div>
-					</div>  <!-- /col-md-8 -->
-
-				</div> <!-- /row -->
-
-			</div> <!-- /div col-md-12 -->
-		</div> <!-- /div row -->
-	</div> <!-- /container -->
-		
-	<div class="footer">
-		<div class="container">
-
-			<div class="row">
-				
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-6">
-							data: <a href="http://www.crunchbase.com/" title="CrunchBase">CrunchBase</a>
-							<br>
-							Feedback? Want to help build VC Nemesis?
-							&nbsp;
-							<span class="glyphicon glyphicon-arrow-right"></span>
-							<a href="http://www.twitter.com/amittaylor"> @amittaylor </a>
-						</div>
-						<div class="col-md-6">
-							<div class="text-right">
-								<div class="copyright">
-									&copy; 2014 VCN
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> <!-- /container -->
-	</div> <!-- footer -->				
-
-	<div class="alert alert-warning alert-dismissable fade in signup1">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<h4><strong>Sign up to save your search.</strong></h4>
-		Get an alert any time one of your competitors gets funded.
-		<div class="text-error"> <em> note: this should only appear after a non-logged in user adds a company </em> </div>
-	</div>
-	
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed 
@@ -319,7 +71,6 @@
 	</script>
 	
 	<!-- This is some JS to not leave the page when the form is submitted (I think) 
-
 	<script>
 		$(document).ready(function(){
 		   var $form = $('form');
@@ -333,8 +84,6 @@
 	</script>
 
 	-->
-
-	<%= yield %>
 
 </body>
 </html>
