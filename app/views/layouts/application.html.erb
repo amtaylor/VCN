@@ -70,20 +70,48 @@
 		$(".alert").alert()
 	</script>
 	
-	<!-- This is some JS to not leave the page when the form is submitted (I think) 
+
+	<!-- This is some JS to not leave the page when the form is submitted (I think)--> 
+	
 	<script>
+
+		$(document).ready(function(){
+			$('#company-form-button').click(function () {
+				console.log('button pressed!');
+			    var $btn = $(this)
+			    $btn.button('loading');
+
+			    $('#companyName1').hide(); //hides the search box when button is pressed
+
+		  	});
+		});
+
+
 		$(document).ready(function(){
 		   var $form = $('form');
 		   $form.submit(function(){
-		      $.post($(this).attr('action'), $(this).serialize(), function(response){
-		            // do something here on success
-		      },'json');
+		      $.get($(this).attr('action'), $(this).serialize(), function(response){
+		            
+		            console.log('company submitted!'); //this just prints a confirmation to the console that the company was added
+
+		            $('#companyName1').show(); //unhides the search box after successful submission
+
+		            $( '#company-form' ).each(function(){
+					    this.reset();
+					}); //This resets the competitor field in the form
+
+		            $('#company-form-button').button('reset'); //this resets the search button;	
+
+		            // console.log($.get('http://localhost:3000')); //trying to refresh the partials
+
+		      });
 		      return false;
 		   });
-		});
-	</script>
+		}); //This function sends the request without leaving the page
 
-	-->
+
+
+	</script> 
 
 </body>
 </html>

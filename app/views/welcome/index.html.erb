@@ -49,7 +49,7 @@
 					<div class="second">
 						<h3>Add competitors:</h3>		
 
-						<form class="form-inline" role="form" action="http://localhost:3000/company" method="get">
+						<form class="form-inline" id="company-form" role="form" action="http://localhost:3000/company" method="get">  <!-- the localhost link here probably needs to be changed at some point -->
 		
 							<div class="form-group">
 								<label class="sr-only" for="exampleCompany">Company Name</label>
@@ -61,7 +61,7 @@
 			
 							<div class="form-group">
 							
-									<button type="submit" class="btn btn-default" data-loading-text="searching...">add</button>
+									<button type="submit" id="company-form-button" class="btn btn-default" data-loading-text="searching...">add</button>
 							
 							</div>
 												
@@ -85,7 +85,7 @@
 								</div>
 								-->
 
-								<!-- only show this if no company is found
+								<!-- show this if company is found
 								<div class="alert alert-success">
 								  	<p>company added</p>
 								</div>
@@ -99,8 +99,10 @@
 				
 							<% @companies.each do |company| %>
 								<li>
-									<%= company.name %>
-									<%= link_to "X", company, method: :delete %>
+									<%=company.name%>
+									<button class="close">
+										<%= link_to '×', company, method: :delete %>
+									</button>
 								</li>
 							<% end %>
 		
@@ -160,7 +162,7 @@
 								<tr>
 									<td>Sequoia</td>
 									<td>Square, Twitter</td>
-								</tr>
+									</tr>
 								<tr>
 									<td>Keith Rabois</td>
 									<td>Square</td>
