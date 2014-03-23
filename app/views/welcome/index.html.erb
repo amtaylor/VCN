@@ -46,137 +46,20 @@
 			<div class="row">
 	  
 				<div class="col-md-4">
-					<div class="second">
-						<h3>Add competitors:</h3>		
-
-						<form class="form-inline" id="company-form" role="form" action="http://localhost:3000/company" method="get">  <!-- the localhost link here probably needs to be changed at some point -->
-		
-							<div class="form-group">
-								<label class="sr-only" for="exampleCompany">Company Name</label>
-								<!-- Always add labels- Screen readers will have trouble with your forms if you don't include a label for every input. For these inline forms, you can hide the labels using the .sr-only class. -->
 					
-									<input type="text" class="form-control" id="companyName1" name="name" placeholder="enter competitor name">
-							
-							</div>					
-			
-							<div class="form-group">
-							
-									<button type="submit" id="company-form-button" class="btn btn-default" data-loading-text="searching...">add</button>
-							
-							</div>
-												
-						</form>
-
-						<!-- typeahead version
-						<div class="row">
-							<div class="col-md-10">
-								<input type="text" class="form-control typeahead" id="search" data-provide="typeahead" data-items="4" placeholder="enter competitor name here" autocomplete="off">
-								
-							</div>
-						</div>
-						-->
-
-						<div class="row">
-								<div class="col-lg-6">
-
-								<!-- only show this if no company is found
-								<div class="alert alert-danger">
-								  	<p>company not found</p>
-								</div>
-								-->
-
-								<!-- show this if company is found
-								<div class="alert alert-success">
-								  	<p>company added</p>
-								</div>
-								-->
-							</div>
-						</div>
-
+					<div class="second">
 						
-						<ul class="list-unstyled">
+						<%= render 'welcome/addcompetitors' %>
 
-				
-							<% @companies.each do |company| %>
-								<li>
-									<%=company.name%>
-									<button class="close">
-										<%= link_to '×', company, method: :delete %>
-									</button>
-								</li>
-							<% end %>
-		
+						<%= render 'welcome/competitors' %>
 
-							<!-- take out the sample table below once backend is ready -->
-
-							<li>
-								Twitter<button class="close">&times;</button>
-							</li>
-							<li>
-								Groupon<button class="close">&times;</button>
-							</li>
-							<li>
-								Zynga<button class="close">&times;</button>
-							</li>
-							<li>
-								Facebook<button class="close">&times;</button>
-							</li>
-						</ul>
 					</div>
 				</div>  <!-- /col-md-4 -->
 		
 				<div class="col-md-8">
-					<div class="second">
-						<h3>Know your VC nemeses:</h3>
-			  
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>VC Nemeses</th>
-									<th>Competitors they’ve invested in</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-								<% @investors.each do |investor| %>
-									<tr>
-										<td> <%= investor.name %> </td>
-										<td>
-											<% Investor.company_for_investor(investor).each do |vc_company| %>
-												<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
-											<% end %>
-											
-										</td>
-									</tr>
-								<% end %>
 
-								<!-- take out the sample table below once backend is ready -->
-								<tr>
-									<td>Andressen Horowitz</td>
-									<td>Square, Twitter, <span class="text-muted"> Google (exited)</span> </td>
-								</tr>
-								<tr>
-									<td>KPCB</td>
-									<td>Kabam, <span class="text-muted"> Zynga (exited) </span>, Rocket Fuel</td>
-								</tr>
-								<tr>
-									<td>Sequoia</td>
-									<td>Square, Twitter</td>
-									</tr>
-								<tr>
-									<td>Keith Rabois</td>
-									<td>Square</td>
-								</tr>
+					<%= render 'welcome/investors' %>
 
-
-							</tbody>
-						</table>
-			  
-						<p class="note">
-							<em>note: some VCs may be willing to invest in companies that compete with companies already in their portfolio, but working with them is probably
-							<a href="http://www.usv.com/2007/01/why-we-dont-inv.php" target="_blank"> not a great idea. </a> </em>
-						</p>
-					</div>
 				</div>  <!-- /col-md-8 -->
 
 			</div> <!-- /row -->

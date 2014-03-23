@@ -1,0 +1,55 @@
+<div class="investors">
+
+	<div class="second">
+		<h3>Know your VC nemeses:</h3>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>VC Nemeses</th>
+					<th>Competitors they’ve invested in</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<% @investors.each do |investor| %>
+					<tr>
+						<td> <%= investor.name %> </td>
+						<td>
+							<% Investor.company_for_investor(investor).each do |vc_company| %>
+								<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+							<% end %>
+							
+						</td>
+					</tr>
+				<% end %>
+
+				<!-- take out the sample table below once backend is ready -->
+				<tr>
+					<td>Andressen Horowitz</td>
+					<td>Square, Twitter, <span class="text-muted"> Google (exited)</span> </td>
+				</tr>
+				<tr>
+					<td>KPCB</td>
+					<td>Kabam, <span class="text-muted"> Zynga (exited) </span>, Rocket Fuel</td>
+				</tr>
+				<tr>
+					<td>Sequoia</td>
+					<td>Square, Twitter</td>
+					</tr>
+				<tr>
+					<td>Keith Rabois</td>
+					<td>Square</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+
+		<p class="note">
+			<em>note: some VCs may be willing to invest in companies that compete with companies already in their portfolio, but working with them is probably
+			<a href="http://www.usv.com/2007/01/why-we-dont-inv.php" target="_blank"> not a great idea. </a> </em>
+		</p>
+	</div>
+	
+</div>

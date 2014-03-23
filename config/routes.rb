@@ -4,6 +4,9 @@ Vcn::Application.routes.draw do
   resources :investors
   resources :companies
   get "company" => "companies#index"
+
+  get 'companylist' => 'welcome#companylist'
+  get 'investorlist' => 'welcome#investorlist'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

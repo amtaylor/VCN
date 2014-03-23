@@ -83,6 +83,8 @@
 
 			    $('#companyName1').hide(); //hides the search box when button is pressed
 
+				$('body').addClass("loading"); //starts loading animation
+
 		  	});
 		});
 
@@ -102,7 +104,25 @@
 
 		            $('#company-form-button').button('reset'); //this resets the search button;	
 
-		            // console.log($.get('http://localhost:3000')); //trying to refresh the partials
+		            // $.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
+		            //	console.log(response);
+
+		            $.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
+		            	
+		            	$('.competitors').replaceWith(response);
+
+		            	//console.log(response);
+
+		            });
+
+		            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
+		            	
+		            	$('.investors').replaceWith(response);
+
+		            });
+
+		           
+			    	$('body').removeClass("loading"); //takes away loading animation
 
 		      });
 		      return false;
