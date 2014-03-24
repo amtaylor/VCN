@@ -238,9 +238,9 @@ button.opn {
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('../images/FhHRx.gif') 
+                url('../images/output_s3gqZK_300ms_v3.gif') 
                 50% 50% 
-                no-repeat;
+                no-repeat; /* alternative loading image: url('../images/FhHRx.gif') */
 }
 
 /* Anytime the body has the loading class, our
