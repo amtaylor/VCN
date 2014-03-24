@@ -157,8 +157,12 @@ button.opn {
 	padding-bottom: 15px;
 }
 
+.second form {
+	margin-bottom: 15px;
+}
+
+
 .second ul {
-	padding-top: 20px;
 	padding-left: 10px;
 }
 
@@ -207,6 +211,11 @@ button.opn {
 	right: 3%;
 	top: 70px;
 }
+
+.comp-alert {
+	display: none;
+}
+
 
 /* from bootstrap theme css file */
 

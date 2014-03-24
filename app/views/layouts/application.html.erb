@@ -66,10 +66,11 @@
 		
 	</script>
 	
+
 	<script>
 		$(".alert").alert()
 	</script>
-	
+
 
 	<!-- This is some JS to not leave the page when the form is submitted (I think)--> 
 	
@@ -92,7 +93,7 @@
 		$(document).ready(function(){
 		   var $form = $('form');
 		   $form.submit(function(){
-		      $.get($(this).attr('action'), $(this).serialize(), function(response){
+		      $.get($(this).attr('action'), $(this).serialize(), function(response){ //this is called when the form is submitted
 		            
 		            console.log('company submitted!'); //this just prints a confirmation to the console that the company was added
 
@@ -120,16 +121,22 @@
 		            	$('.investors').replaceWith(response);
 
 		            });
-
 		           
 			    	$('body').removeClass("loading"); //takes away loading animation
+
+			    	//console.log(response);
+
+					if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
+						$(".comp-fail").show().delay(10000).fadeOut();
+					}
+					else{
+						$(".comp-success").show().delay(5000).fadeOut();
+					};
 
 		      });
 		      return false;
 		   });
 		}); //This function sends the request without leaving the page
-
-
 
 	</script> 
 
