@@ -6,7 +6,7 @@ module Api
     CRUNCHBASE_COMPANY_NAMESPACE  = "company"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
 
-    attr_accessor :company, :uri, :name, :api_key
+    attr_accessor :company, :uri, :name, :api_key, :exited
 
     def initialize(name = "")
       self.name    = name.gsub(' ', '-')
@@ -40,6 +40,7 @@ module Api
       self.name = json_body['name']
       Rails.logger.debug "Name=#{self.name}"
       funding_rounds = json_body['funding_rounds']
+      self.exited = !(json_body['acquisition'] ||  json_body['ipo']).nil?
       investor = []
       unless funding_rounds.nil?
         funding_rounds.each do |round|
@@ -63,6 +64,8 @@ module Api
           company.investors.create!(:name => investor)
         end
       end
+      company.exited = self.exited
+      company.save!
       company.investors
     end
  end
