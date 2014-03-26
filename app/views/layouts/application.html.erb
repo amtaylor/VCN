@@ -84,7 +84,7 @@
 
 			    $('#companyName1').hide(); //hides the search box when button is pressed
 
-				$('body').addClass("loading"); //starts loading animation
+				$('body').addClass("loading"); //starts the 'loading' animation
 
 		  	});
 		});
@@ -131,12 +131,27 @@
 					}
 					else{
 						$(".comp-success").show().delay(5000).fadeOut();
+
+						$(".signup1").show();// invites user to sign up-- this should probably only pop up the first time
+
 					};
 
 		      });
 		      return false;
 		   });
 		}); //This function sends the request without leaving the page
+
+
+		$(document).ready(function(){
+			$('#signup1-close').click(function () {
+				console.log('signup closed');
+
+				$(".signup1").remove(); // This removes the 'sign up now!' prompt the first time the person x's out of it
+			    
+		  	});
+		});
+
+
 
 	</script> 
 
