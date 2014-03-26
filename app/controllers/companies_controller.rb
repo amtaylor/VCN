@@ -11,6 +11,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def destroy
+    Company.find(params[:id]).destroy
+    flash[:success] = "Company deleted."
+  end
+
   private
 
   def require_company
@@ -29,12 +34,6 @@ class CompaniesController < ApplicationController
       end
     end
   end
-
-  def destroy
-    Company.find(params[:id]).destroy
-    flash[:success] = "Company deleted."
-  end
-
 
 
 end

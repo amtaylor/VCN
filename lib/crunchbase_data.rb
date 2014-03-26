@@ -6,12 +6,12 @@ module Api
     CRUNCHBASE_COMPANY_NAMESPACE  = "company"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
 
-    attr_accessor :company, :uri, :name, :api_key
+    attr_accessor :company, :uri, :name, :api_key, :exited
 
     def initialize(name = "")
-      self.name    = name
+      self.name    = name.gsub(' ', '-')
       self.api_key = CRUNCHBASE_API_KEY
-      self.uri     = URI("http://api.crunchbase.com/v/1/company/#{name}.js?api_key=#{api_key}")
+      self.uri     = URI("http://api.crunchbase.com/v/1/company/#{self.name}.js?api_key=#{api_key}")
     end
 
     def fetch
@@ -37,7 +37,10 @@ module Api
 
     def parse_json(data)
       json_body = JSON.parse(data)
+      self.name = json_body['name']
+      Rails.logger.debug "Name=#{self.name}"
       funding_rounds = json_body['funding_rounds']
+      self.exited = !(json_body['acquisition'] ||  json_body['ipo']).nil?
       investor = []
       unless funding_rounds.nil?
         funding_rounds.each do |round|
@@ -56,13 +59,13 @@ module Api
 
     def create_company_investors(investor_data)
       company = Company.find_or_create_by_name(:name => self.name)
-      puts "investor Data = #{investor_data}"
       unless company.nil?
         investor_data.each do |investor|
-          puts "Investor = #{investor}"
           company.investors.create!(:name => investor)
         end
       end
+      company.exited = self.exited
+      company.save!
       company.investors
     end
  end
