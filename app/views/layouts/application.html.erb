@@ -39,8 +39,13 @@
 </head>
 <body>
 
-	<%= render 'layouts/header' %>
-	<%= yield %>
+	<div id="wrap"> <!-- added this to get the sticky footer-->
+
+
+		<%= render 'layouts/header' %>
+		<%= yield %>
+
+	</div>	<!-- end wrap -->
 	<%= render 'layouts/footer' %>	
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

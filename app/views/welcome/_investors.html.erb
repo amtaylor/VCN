@@ -12,19 +12,39 @@
 			</thead>
 			<tbody>
 				
-				<% @investors.each do |investor| %>
-					<tr>
-						<td> <%= investor.name %> </td>
-						<td>
-							<% Investor.company_for_investor(investor).each do |vc_company| %>
-								<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
-							<% end %>
-							
-						</td>
-					</tr>
+
+				<% if @investors.size > 0 %>
+					<% @investors.each do |investor| %>
+						<tr>
+							<td> <%= investor.name %> </td>
+							<td>
+								<% Investor.company_for_investor(investor).each do |vc_company| %>
+
+									<% if vc_company.exited? %>
+										<span class="text-muted">
+											<%=  vc_company.name %>
+											(exited)
+											<%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+											
+										</span>
+									<% else %>
+										<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+									<% end %>
+								<% end %>
+								
+							</td>
+						</tr>
+					<% end %>
+				<% else %>
+					<span class="text-muted">
+						<tr>
+							<td>None</td>
+							<td>None</td>
+						</tr>
+					</span>
 				<% end %>
 
-				<!-- take out the sample table below once backend is ready -->
+				<!-- original sample table 
 				<tr>
 					<td>Andressen Horowitz</td>
 					<td>Square, Twitter, <span class="text-muted"> Google (exited)</span> </td>
@@ -41,7 +61,7 @@
 					<td>Keith Rabois</td>
 					<td>Square</td>
 				</tr>
-
+				-->
 
 			</tbody>
 		</table>
