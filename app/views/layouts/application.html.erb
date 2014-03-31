@@ -23,6 +23,10 @@
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
+
+	<!-- this is here so that you can call the root url in links wherever needed -->
+	<script> var BASE_URL = '<%= root_url %>'; </script>
+
 	
 	<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -110,22 +114,19 @@
 
 		            $('#company-form-button').button('reset'); //this resets the search button;	
 
-		            // $.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
-		            //	console.log(response);
-
 		            $.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
 		            	
 		            	$('.competitors').replaceWith(response);
 
 		            	//console.log(response);
 
-		            });
+		            });  //updates companies
 
 		            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
 		            	
 		            	$('.investors').replaceWith(response);
 
-		            });
+		            });  //updates investors
 		           
 			    	$('body').removeClass("loading"); //takes away loading animation
 
@@ -155,6 +156,54 @@
 			    
 		  	});
 		});
+
+		/*
+		$(document).ready(function(){ 
+			$('.comp-close').click(function () {
+				$.ajax({
+				    url: 'http://localhost:3000/companies',
+				    type: 'DELETE',
+				    success: function(response) {
+				       	
+				       	$.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
+			            	
+			            	$('.competitors').replaceWith(response);
+
+			            	//console.log(response);
+
+			            }); //updates companies
+
+			            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
+			            	
+			            	$('.investors').replaceWith(response);
+
+			            }); //updates investors
+				    }
+				});
+			});
+		}); //Deletes companies when 'x' is pressed
+		*/
+
+		$(document).ready(function(){ 
+			$('.comp-close').click(function () {
+
+		       	$.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
+	            	
+	            	$('.competitors').replaceWith(response);
+
+	            	console.log("yea!!!!!!"+response);
+
+	            }); //updates companies
+
+	            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
+	            	
+	            	$('.investors').replaceWith(response);
+
+	            	console.log('investor success');
+
+	            }); //updates investors
+			});
+		}); //Deletes companies when 'x' is pressed
 
 
 

@@ -1,0 +1,18 @@
+//delete.js.erb
+
+
+$(document).ready(function(){
+	console.log("this worked");
+});
+
+$.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
+	            	
+	$('.competitors').replaceWith(response);
+
+}); //updates companies
+
+$.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
+	
+	$('.investors').replaceWith(response);
+
+}); //updates investors

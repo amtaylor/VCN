@@ -8,7 +8,7 @@
 			<li>
 				<%=company.name%>
 				<button class="close">
-					<%= link_to '×', company, method: :delete %>
+					<%= link_to '×', company, method: :delete, remote: true, class: "comp-close" %>
 				</button>
 			</li>
 		<% end %>
