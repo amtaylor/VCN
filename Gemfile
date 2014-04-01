@@ -53,3 +53,6 @@ gem 'oj'
 
 #Heroku asks to add this gem:
 gem 'rails_12factor', group: :production
+
+#Heroku asks to specify the ruby version
+ruby "2.1.1"
