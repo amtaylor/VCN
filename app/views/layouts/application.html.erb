@@ -100,11 +100,13 @@
 
 
 		$(document).ready(function(){
-		   var $form = $('form');
+		   var $form = $('form#company-form');
 		   $form.submit(function(){
 		      $.get($(this).attr('action'), $(this).serialize(), function(response){ //this is called when the form is submitted
 		            
 		            console.log('company submitted!'); //this just prints a confirmation to the console that the company was added
+
+		            console.log(BASE_URL);
 
 		            $('#companyName1').show(); //unhides the search box after successful submission
 
@@ -114,7 +116,7 @@
 
 		            $('#company-form-button').button('reset'); //this resets the search button;	
 
-		            $.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
+		            $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
 		            	
 		            	$('.competitors').replaceWith(response);
 
@@ -122,7 +124,7 @@
 
 		            });  //updates companies
 
-		            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
+		            $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
 		            	
 		            	$('.investors').replaceWith(response);
 
@@ -130,7 +132,6 @@
 		           
 			    	$('body').removeClass("loading"); //takes away loading animation
 
-			    	//console.log(response);
 
 					if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
 						$(".comp-fail").show().delay(10000).fadeOut();
@@ -156,6 +157,57 @@
 			    
 		  	});
 		});
+
+
+
+
+		$(document).ready(function(){
+
+			$('#photoshare').click(function () {
+
+				$('body').addClass("loading"); //starts the 'loading' animation
+
+				var getInvestors = function(comp){
+				    var url= BASE_URL + '/company?name=' + comp;
+				    $.get(url);
+				}
+
+				$.when( getInvestors('OKCupid'),
+			        getInvestors('Zoosk'),
+			        getInvestors('HowAboutWe'),
+			        getInvestors('Grouper')
+			      	).done(function(){
+
+			      		$.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
+							            	
+							$('.competitors').replaceWith(response);
+
+						}); //updates companies
+
+						$.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
+							
+							$('.investors').replaceWith(response);
+
+						}); //updates investors
+
+
+						$('body').removeClass("loading"); //takes away loading animation
+
+
+			    	});
+
+			});
+
+	    });
+
+
+			 
+
+
+
+
+
+
 
 		/*
 		$(document).ready(function(){ 
@@ -183,28 +235,6 @@
 			});
 		}); //Deletes companies when 'x' is pressed
 		*/
-
-		$(document).ready(function(){ 
-			$('.comp-close').click(function () {
-
-		       	$.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
-	            	
-	            	$('.competitors').replaceWith(response);
-
-	            	console.log("yea!!!!!!"+response);
-
-	            }); //updates companies
-
-	            $.get('http://localhost:3000/investorlist', $(this).serialize(), function(response){
-	            	
-	            	$('.investors').replaceWith(response);
-
-	            	console.log('investor success');
-
-	            }); //updates investors
-			});
-		}); //Deletes companies when 'x' is pressed
-
 
 
 	</script> 

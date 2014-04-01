@@ -1,10 +1,6 @@
 //delete.js.erb
 
 
-$(document).ready(function(){
-	console.log("this worked");
-});
-
 $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
 	            	
 	$('.competitors').replaceWith(response);

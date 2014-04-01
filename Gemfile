@@ -50,3 +50,6 @@ gem 'oj'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#Heroku asks to add this gem:
+gem 'rails_12factor', group: :production
