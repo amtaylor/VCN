@@ -4,6 +4,12 @@ body {
 	/* font-family: 'Lato', sans-serif; */
 }
 
+/* without this the modal seems to create a 15px margin on the right */
+body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+	margin-right: 0px;
+}
+
+
 h1, h2, h3, h4, h5, h6, p {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -241,7 +247,7 @@ button.opn {
 
 /*"loading" modal */
 
-.modal {
+.loading-modal {
     display:    none;
     position:   fixed;
     z-index:    1000;
@@ -257,7 +263,7 @@ button.opn {
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-body.loading .modal {
+body.loading .loading-modal {
     display: block;
 }
 
