@@ -41,6 +41,11 @@ module Api
       Rails.logger.debug "Name=#{self.name}"
       funding_rounds = json_body['funding_rounds']
       self.exited = !(json_body['acquisition'] ||  json_body['ipo']).nil?
+      self.total_money_raised = json_body['total_money_raised']
+      self.founded_year = json_body['founded_year']
+      self.founded_month = json_body['founded_month']
+      self.number_of_employees = json_body['number_of_employees']
+
       investor = []
       unless funding_rounds.nil?
         funding_rounds.each do |round|

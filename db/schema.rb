@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331042022) do
+ActiveRecord::Schema.define(version: 20140413083007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,13 @@ ActiveRecord::Schema.define(version: 20140331042022) do
   create_table "companies", force: true do |t|
     t.string   "name"
     t.string   "crunchbase_id"
-    t.boolean  "exited",        default: false
+    t.boolean  "exited",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "total_money_raised"
+    t.integer  "number_of_employees"
+    t.integer  "founded_year"
+    t.integer  "founded_month"
   end
 
   create_table "investors", force: true do |t|
