@@ -6,7 +6,7 @@ module Api
     CRUNCHBASE_COMPANY_NAMESPACE  = "company"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
 
-    attr_accessor :company, :uri, :name, :api_key, :exited
+    attr_accessor :company, :uri, :name, :api_key, :exited, :total_money_raised, :founded_year, :founded_month, :number_of_employees
 
     def initialize(name = "")
       self.name    = name.gsub(' ', '-')
@@ -70,6 +70,10 @@ module Api
         end
       end
       company.exited = self.exited
+      company.total_money_raised = self.total_money_raised
+      company.founded_year = self.founded_year
+      company.founded_month = self.founded_month
+      company.number_of_employees = self.number_of_employees
       company.save!
       company.investors
     end

@@ -1,39 +1,49 @@
+<div class="competitors" id="competitors">
 
-<div class="competitors">
-	
-	<ul class="list-unstyled">
+	<div class="second">
+		<h3>Companies:</h3>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Company</th>
+					<th class="text-center">$ Raised</th>
+					<th class="text-center">Date <br> Founded</th>
+					<th class="text-center"># of <br> Employees</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<% if @companies.size > 0 %>
+					<% @companies.each do |company| %>
+						<tr>
+							<td> <%= company.name %> </td>
+							<td class="text-center"> <%= company.total_money_raised %> </td>
+							<td class="text-center">
+								<%= company.founded_month %>/<%= company.founded_year %>
+							</td>
+							<td class="text-center">
+								<% if company.number_of_employees.nil? %>
+									--
+								<% else %>
+									<%= company.number_of_employees %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				<% else %>
+					
+						<tr>
+							<td><span class="text-muted">None</span></td>
+							<td><span class="text-muted">None</span></td>
+						</tr>
+					
+				<% end %>
 
 
-		<% @companies.each do |company| %>
-			<li>
-				<%=company.name%>
-				<button class="close">
-					<%= link_to '×', company, method: :delete, remote: true, class: "comp-close" %>
-				</button>
-			</li>
-		<% end %>
+			</tbody>
+		</table>
 
-
-		<!-- take out the sample table below once backend is ready -->
-		<!-- 
-		<li>
-			Twitter<button class="close">&times;</button>
-		</li>
-		<li>
-			Groupon<button class="close">&times;</button>
-		</li>
-		<li>
-			Zynga<button class="close">&times;</button>
-		</li>
-		<li>
-			Facebook<button class="close">&times;</button>
-		</li>
-		-->
-
-	</ul>
-
-	<div class="loading-modal"><!-- Place at bottom of page, This is the modal that appears when this info is loading --></div>
+	</div>
 
 </div>
-
-

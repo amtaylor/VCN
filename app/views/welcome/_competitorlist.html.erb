@@ -1,0 +1,39 @@
+
+<div class="competitor-list">
+	
+	<ul class="list-unstyled">
+
+
+		<% @companies.each do |company| %>
+			<li>
+				<%=company.name%>
+				<button class="close">
+					<%= link_to '×', company, method: :delete, remote: true, class: "comp-close" %>
+				</button>
+			</li>
+		<% end %>
+
+
+		<!-- take out the sample table below once backend is ready -->
+		<!-- 
+		<li>
+			Twitter<button class="close">&times;</button>
+		</li>
+		<li>
+			Groupon<button class="close">&times;</button>
+		</li>
+		<li>
+			Zynga<button class="close">&times;</button>
+		</li>
+		<li>
+			Facebook<button class="close">&times;</button>
+		</li>
+		-->
+
+	</ul>
+
+	<div class="loading-modal"><!-- Place at bottom of page, This is the modal that appears when this info is loading --></div>
+
+</div>
+
+
