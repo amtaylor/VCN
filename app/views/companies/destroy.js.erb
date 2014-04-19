@@ -3,12 +3,18 @@
 
 $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
 	            	
-	$('.competitors').replaceWith(response);
+	$('.competitor-list').replaceWith(response);
 
-}); //updates companies
+}); //updates competitor list
 
 $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
 	
 	$('.investors').replaceWith(response);
 
 }); //updates investors
+
+$.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
+	
+	$('.competitor-list-fulldata').replaceWith(response);
+
+}); //updates competitor table

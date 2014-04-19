@@ -8,6 +8,7 @@ Vcn::Application.routes.draw do
 
   get 'companylist' => 'welcome#companylist'
   get 'investorlist' => 'welcome#investorlist'
+  get 'companylistfulldata' => 'welcome#companylistfulldata'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

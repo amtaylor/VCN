@@ -122,7 +122,7 @@
 
 		            $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
 		            	
-		            	$('.competitors').replaceWith(response);
+		            	$('.competitor-list').replaceWith(response);
 
 		            	//console.log(response);
 
@@ -133,7 +133,14 @@
 		            	$('.investors').replaceWith(response);
 
 		            });  //updates investors
-		           
+
+		            $.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
+		            	
+		            	$('.competitor-list-fulldata').replaceWith(response);
+
+		            });  //updates investors
+
+
 			    	$('body').removeClass("loading"); //takes away loading animation
 
 
@@ -184,7 +191,7 @@
 
 			      		$.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
 							            	
-							$('.competitors').replaceWith(response);
+							$('.competitor-list').replaceWith(response);
 
 						}); //updates companies
 
@@ -213,7 +220,8 @@
 
 
 
-		/*
+		/* not used:
+		
 		$(document).ready(function(){ 
 			$('.comp-close').click(function () {
 				$.ajax({
@@ -223,7 +231,7 @@
 				       	
 				       	$.get('http://localhost:3000/companylist', $(this).serialize(), function(response){
 			            	
-			            	$('.competitors').replaceWith(response);
+			            	$('.competitor-list').replaceWith(response);
 
 			            	//console.log(response);
 

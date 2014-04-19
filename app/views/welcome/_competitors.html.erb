@@ -1,7 +1,8 @@
-<div class="competitors" id="competitors">
+<div class="competitor-list-fulldata" id="competitors">
 
 	<div class="second">
-		<h3>Companies:</h3>
+		<h3><a>View Company Data</a></h3>
+		<h3>Company Data <a>(hide)</a></h3>
 
 		<table class="table table-hover">
 			<thead>
@@ -9,6 +10,7 @@
 					<th>Company</th>
 					<th class="text-center">$ Raised</th>
 					<th class="text-center">Date <br> Founded</th>
+					<th class="text-center">Age <br> (years)</th>
 					<th class="text-center"># of <br> Employees</th>
 				</tr>
 			</thead>
@@ -20,13 +22,36 @@
 							<td> <%= company.name %> </td>
 							<td class="text-center"> <%= company.total_money_raised %> </td>
 							<td class="text-center">
-								<%= company.founded_month %>/<%= company.founded_year %>
+								<% if company.founded_month.nil? %>
+									<%= company.founded_year %>
+								<% elsif company.founded_year.nil? %>
+									--
+								<% else %>
+									<%= company.founded_month %>/<%= company.founded_year %>
+								<% end %>
+							</td>
+							<td class="text-center">
+								<% if company.founded_month.nil? %>
+
+									<%= number_with_precision(
+									(Date.today() - Date.new(company.founded_year)) / 365, precision: 1) %>
+
+								<% elsif company.founded_year.nil? %>
+									--
+
+								<% else %>
+
+									<%= number_with_precision(
+									(Date.today() - Date.new(company.founded_year,company.founded_month)) / 365, precision: 1) %>
+
+								<% end %>
+
 							</td>
 							<td class="text-center">
 								<% if company.number_of_employees.nil? %>
 									--
 								<% else %>
-									<%= company.number_of_employees %>
+									<%= number_with_delimiter(company.number_of_employees) %>
 								<% end %>
 							</td>
 						</tr>
