@@ -52,7 +52,8 @@ gem 'oj'
 # gem 'debugger', group: [:development, :test]
 
 #Heroku asks to add this gem:
-gem 'rails_12factor', group: :production
-
-#Heroku asks to specify the ruby version
-ruby "2.1.1"
+group :production do
+  gem 'rails_12factor'
+  #Heroku asks to specify the ruby version
+  ruby "2.0.0"
+end
