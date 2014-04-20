@@ -1,73 +1,94 @@
 <div class="competitor-list-fulldata" id="competitors">
 
 	<div class="second">
-		<h3><a>View Company Data</a></h3>
-		<h3>Company Data <a>(hide)</a></h3>
+		
+		<a data-toggle="collapse" href=".collapseCompany" id="viewCompany" class="collapseCompany collapse in">
+			<h3>
+				<span class="glyphicon glyphicon-plus"></span>
+				<em>View Company Data</em>
+			</h3>
+		</a>
 
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>Company</th>
-					<th class="text-center">$ Raised</th>
-					<th class="text-center">Date <br> Founded</th>
-					<th class="text-center">Age <br> (years)</th>
-					<th class="text-center"># of <br> Employees</th>
-				</tr>
-			</thead>
-			<tbody>
+		<div class="collapseCompany collapse">
+			<h3>Company Data <a data-toggle="collapse" href=".collapseCompany"><em>(hide)</em></a></h3>
 
-				<% if @companies.size > 0 %>
-					<% @companies.each do |company| %>
-						<tr>
-							<td> <%= company.name %> </td>
-							<td class="text-center"> <%= company.total_money_raised %> </td>
-							<td class="text-center">
-								<% if company.founded_month.nil? %>
-									<%= company.founded_year %>
-								<% elsif company.founded_year.nil? %>
-									--
-								<% else %>
-									<%= company.founded_month %>/<%= company.founded_year %>
-								<% end %>
-							</td>
-							<td class="text-center">
-								<% if company.founded_month.nil? %>
 
-									<%= number_with_precision(
-									(Date.today() - Date.new(company.founded_year)) / 365, precision: 1) %>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Company</th>
+						<th class="text-center">$ Raised</th>
+						<th class="text-center">Date <br> Founded</th>
+						<th class="text-center">Age <br> (years)</th>
+						<th class="text-center"># of <br> Employees</th>
+					</tr>
+				</thead>
+				<tbody>
 
-								<% elsif company.founded_year.nil? %>
-									--
+					<% if @companies.size > 0 %>
+						<% @companies.each do |company| %>
+							<tr>
+								<td>
 
-								<% else %>
+									<% if company.exited? %>
+										<%=  company.name %>
+										<span class="text-muted"> (exited) </span>
 
-									<%= number_with_precision(
-									(Date.today() - Date.new(company.founded_year,company.founded_month)) / 365, precision: 1) %>
+									<% else %>
+										<%= company.name %>
 
-								<% end %>
+									<% end %>
 
-							</td>
-							<td class="text-center">
-								<% if company.number_of_employees.nil? %>
-									--
-								<% else %>
-									<%= number_with_delimiter(company.number_of_employees) %>
-								<% end %>
-							</td>
-						</tr>
+								</td>
+								<td class="text-center"> <%= company.total_money_raised %> </td>
+								<td class="text-center">
+									<% if company.founded_month.nil? %>
+										<%= company.founded_year %>
+									<% elsif company.founded_year.nil? %>
+										--
+									<% else %>
+										<%= company.founded_month %>/<%= company.founded_year %>
+									<% end %>
+								</td>
+								<td class="text-center">
+									<% if company.founded_month.nil? %>
+
+										<%= number_with_precision(
+										(Date.today() - Date.new(company.founded_year)) / 365, precision: 1) %>
+
+									<% elsif company.founded_year.nil? %>
+										--
+
+									<% else %>
+
+										<%= number_with_precision(
+										(Date.today() - Date.new(company.founded_year,company.founded_month)) / 365, precision: 1) %>
+
+									<% end %>
+
+								</td>
+								<td class="text-center">
+									<% if company.number_of_employees.nil? %>
+										--
+									<% else %>
+										<%= number_with_delimiter(company.number_of_employees) %>
+									<% end %>
+								</td>
+							</tr>
+						<% end %>
+					<% else %>
+						
+							<tr>
+								<td><span class="text-muted">None</span></td>
+								<td><span class="text-muted">None</span></td>
+							</tr>
+						
 					<% end %>
-				<% else %>
-					
-						<tr>
-							<td><span class="text-muted">None</span></td>
-							<td><span class="text-muted">None</span></td>
-						</tr>
-					
-				<% end %>
+					 
 
-
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 
 	</div>
 
