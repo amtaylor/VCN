@@ -55,5 +55,5 @@ gem 'oj'
 group :production do
   gem 'rails_12factor'
   #Heroku asks to specify the ruby version
-  ruby "2.0.0"
+  ruby "2.1.1"
 end
