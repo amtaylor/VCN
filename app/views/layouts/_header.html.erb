@@ -35,10 +35,10 @@
 				</li>
 				-->
 				<li>
-					<button type="button" class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#SignUpModal", href=<%= new_user_registration_path %> >Sign Up</button>
+				  <%= link_to('Sign Up', new_user_registration_path)  %>
 				</li>
 				<li>
-					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#SignInModal", href=<%= new_user_session_path %> >Sign In</button>
+			      <%= link_to('Login', new_user_session_path)  %>
 				</li>
 			</ul>
 		</div>
