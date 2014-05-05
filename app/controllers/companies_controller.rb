@@ -1,11 +1,11 @@
 require 'crunchbase_data'
 class CompaniesController < ApplicationController
-  before_filter :require_company, :only => [:index]
   before_filter :add_companies, :only => [:index]
+  before_filter :require_company, :only => [:index]
 
   def index
     if @company
-      @investors = Investor.select(:name).uniq.order("name ASC")
+      @investors = current_user.user_companies.where("company_id = ? ", @company.id).first.company.investors.select(:name).uniq.order("name ASC")
     else
       render :json => {:status => "Company Doesn't Exist"}
     end
@@ -23,22 +23,13 @@ class CompaniesController < ApplicationController
 
   private
 
-  def require_company
-    Rails.logger.debug "Params=#{params}"
+  def require_company    
     return "Need company name" unless params[:name]
-    @company = Company.find_by_name(params[:name])
+    @company = Company.find_by_name(params[:name])    
   end
 
-  def add_companies
-    if @company.nil?
-      begin
-        Api::CrunchbaseData.new(params[:name]).fetch
-        @company = Company.find_by_name(params[:name])
-      rescue => e
-        @company = nil
-      end
-    end
+  def add_companies    
+    Api::CrunchbaseData.new(params[:name], current_user, @company).fetch    
   end
-
 
 end

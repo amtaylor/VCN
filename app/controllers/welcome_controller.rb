@@ -1,7 +1,13 @@
 class WelcomeController < ApplicationController
+  	
+  	#TODO fix by creating temporary user
   	def index
-      	@investors = Investor.select(:name).uniq.order("name ASC")
-      	@companies = Company.all
+  	  @companies = current_user.nil? ? [] : current_user.user_companies.map(&:company).compact  	    	  
+  	  if @companies.nil? || current_user.nil?
+  	    @investors = []	
+  	  else
+  	  	@investors = Investor.where(:company_id => @companies.map(&:id).compact).select(:name).uniq.order("name ASC")
+  	  end
 	end
 
 	def companylist
