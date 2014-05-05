@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
   end
 
   def add_companies    
-    Api::CrunchbaseData.new(params[:name], current_user, @company).fetch    
+    Api::CrunchbaseData.new(params[:name], current_or_guest_user, @company).fetch    
   end
 
 end
