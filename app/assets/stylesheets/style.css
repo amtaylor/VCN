@@ -86,10 +86,29 @@ a {
 	background-color: #C92229;
 }
 
-.btn-danger:hover {
+.navbar-default .navbar-nav>li>a.btn-default {
+	color: #333;
+}
+
+
+.navbar-default .navbar-nav>li>a.btn-danger {
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a.btn-default:hover {
+	color: #333;
+	background-color: #ebebeb;
+	border-color: #adadad;
+}
+
+.navbar-default .navbar-nav>li>a.btn-danger:hover {
 	color: #C92229;
 	font-weight: bold;
 	background-color: #ffffff;
+}
+
+.navbar-nav>li>a {
+	padding: 6px 12px;
 }
 
 /* .navbar .btn {
@@ -376,3 +395,50 @@ body {
 #footer {
   height: 60px;
 }
+
+/* VCN Authentication
+-------------------------------------------------- */
+
+.VCNauth {
+	margin: 30px 10px;
+}
+
+/* User sign in and sign forms. */
+.VCNauth {
+
+  max-width: 300px;
+  padding: 5px 29px 29px;
+  margin: 40px auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.VCNauth .form-signin-heading,
+.VCNauth .checkbox {
+  margin-bottom: 10px;
+}
+
+.VCNauth h2 {
+	margin-bottom: 30px;
+}
+
+.VCNauth .btn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.VCNauth input[type="text"],
+.VCNauth input[type="email"],
+.VCNauth input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
