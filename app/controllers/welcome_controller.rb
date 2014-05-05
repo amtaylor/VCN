@@ -1,8 +1,8 @@
 class WelcomeController < ApplicationController
+	before_filter :require_companies
   	
   	#TODO fix by creating temporary user
-  	def index
-  	  @companies = current_user.nil? ? [] : current_user.user_companies.map(&:company).compact  	    	  
+  	def index  	  
   	  if @companies.nil? || current_user.nil?
   	    @investors = []	
   	  else
@@ -10,19 +10,21 @@ class WelcomeController < ApplicationController
   	  end
 	end
 
-	def companylist
-		@companies = Company.all
+	def companylist		
 		render :partial => 'competitorlist.html.erb'	
 	end
 
 	def investorlist
-		@investors = Investor.select(:name).uniq.order("name ASC")
+		@investors = Investor.where(:company_id => @companies.map(&:id).compact).select(:name).uniq.order("name ASC")
 		render :partial => 'investors.html.erb'	
 	end
 
-	def companylistfulldata
-		@companies = Company.all
+	def companylistfulldata		
 		render :partial => 'competitors.html.erb'
+	end
+
+	def require_companies
+	  @companies ||= @user.user_companies.map(&:company).compact
 	end
 
 end
