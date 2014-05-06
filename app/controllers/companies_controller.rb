@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    Company.find(params[:id]).destroy
+    UserCompany.find(params[:id]).destroy
     flash[:success] = "Company deleted."
 
     respond_to do |format|

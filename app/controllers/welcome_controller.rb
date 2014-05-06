@@ -25,6 +25,7 @@ class WelcomeController < ApplicationController
 
 	def require_companies
 	  @companies ||= @user.user_companies.map(&:company).compact
+	  Rails.logger.debug "User=#{@user.inspect}, Companies=#{@companies.inspect}"
 	end
 
 end

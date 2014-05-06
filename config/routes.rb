@@ -1,6 +1,7 @@
 Vcn::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+
   get "welcome/index"
   resources :investors
   resources :companies
