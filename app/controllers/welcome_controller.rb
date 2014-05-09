@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
 	end
 
 	def investorlist
-		@investors = Investor.where(:company_id => @companies.map(&:id).compact).select(:name).uniq.order("name ASC")
+		@investors = UserCompany.investor_names_for_user_companies(user)
 		render :partial => 'investors.html.erb'	
 	end
 
