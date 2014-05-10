@@ -186,8 +186,8 @@
 				$('body').addClass("loading"); //starts the 'loading' animation
 
 				var getInvestors = function(comp){
-				    var url= BASE_URL + '/company?name=' + comp;
-				    $.get(url);
+				    var url= BASE_URL + '/companies';
+				    $.post(url, {company_name: comp});
 				}
 
 				$.when( getInvestors('OKCupid'),

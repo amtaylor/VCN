@@ -5,7 +5,7 @@ Vcn::Application.routes.draw do
   get "welcome/index"
   resources :investors
   resources :companies
-  get "company" => "companies#index"
+  
 
   get 'companylist' => 'welcome#companylist'
   get 'investorlist' => 'welcome#investorlist'

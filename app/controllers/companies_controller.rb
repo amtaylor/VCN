@@ -1,6 +1,6 @@
 require 'crunchbase_data'
 class CompaniesController < ApplicationController
-  before_filter :add_companies, :only => [:create]
+  before_filter :add_companies, :only => [:create, :index]
 
   def index
     @companies = user.user_companies
