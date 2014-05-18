@@ -1,6 +1,6 @@
 require 'crunchbase_data'
 class CompaniesController < ApplicationController
-  before_filter :add_companies, :only => [:create, :index]
+  before_filter :add_companies, :only => [:index]
 
   def index
     @companies = user.user_companies
@@ -11,19 +11,17 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def create
-    @company = Company.find_by_name(params[:name])
-    user.user_companies.create!(company_id: @company.id)
-  end
-
   def destroy
-    UserCompany.find(params[:id]).destroy
-    flash[:success] = "Company deleted."
-
-    respond_to do |format|
-      format.js
+    company = @user.user_companies.where(:company_id => params[:id]).first
+    if company.nil?
+      flash[:error] = "Company doesn't exist" 
+    else
+      company.destroy
+      flash[:success] = "Company deleted."
+      respond_to do |format|
+        format.js
+      end
     end
-
   end
 
   private

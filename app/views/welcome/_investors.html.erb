@@ -17,17 +17,17 @@
 						<tr>
 							<td> <%= investor.name %> </td>
 							<td>
-								<% Investor.company_for_investor(investor).each do |vc_company| %>
+								<% Investor.company_for_investor(@user, investor).each do |vc_company| %>
 
 									<% if vc_company.exited? %>
 										<span class="text-muted">
 											<%=  vc_company.name %>
 											(exited)
-											<%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+											<%= "," unless vc_company == Investor.company_for_investor(@user,investor).last %>
 											
 										</span>
 									<% else %>
-										<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(investor).last %>
+										<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(@user, investor).last %>
 									<% end %>
 								<% end %>
 								
