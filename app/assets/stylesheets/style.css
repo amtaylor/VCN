@@ -115,6 +115,13 @@ a {
 	margin-top: 12px;
 }  */
 
+.greeting {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+}
+
 /* info */
 
 .info {

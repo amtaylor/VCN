@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
 	before_filter :require_companies
+	before_filter :set_user_registered
   	
   	#TODO fix by creating temporary user
   	def index  	  
@@ -26,6 +27,10 @@ class WelcomeController < ApplicationController
 
 	def require_companies
 	  @companies ||= @user.user_companies.map(&:company).compact
+	end
+
+	def set_user_registered
+	  @user_registered ||= !/guest/.match(@user.email)
 	end
 
 end

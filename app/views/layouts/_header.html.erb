@@ -45,13 +45,27 @@
 				</li>
 				-->
 
-				<li>
-					<%= link_to('Sign Up', new_user_registration_path, class: 'btn btn-danger navbar-btn') %>
-				</li>
-				<li>
-					<%= link_to('Sign In', new_user_session_path, class: 'btn btn-default navbar-btn') %>
-				</li>
+				<% if @user_registered %>
 
+					<li>
+						<a class="greeting btn btn-link navbar-btn">
+							Hi&nbsp;<%= current_user.email %>
+						</a>
+					</li>
+					<li>
+						<%= link_to('Logout', destroy_user_session_path, class: 'btn btn-link navbar-btn', :method => :delete) %>
+					</li>
+	
+				<% else %>
+				
+					<li>
+						<%= link_to('Sign Up', new_user_registration_path, class: 'btn btn-danger navbar-btn') %>
+					</li>
+					<li>
+						<%= link_to('Sign In', new_user_session_path, class: 'btn btn-default navbar-btn') %>
+					</li>
+
+				<% end %>
 			</ul>
 		</div>
 	</div>
