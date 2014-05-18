@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_registered?
+    !/guest/.match(@user.email)
+  end
+
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user
