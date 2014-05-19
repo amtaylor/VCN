@@ -72,6 +72,7 @@ module Api
         company.founded_year = self.founded_year
         company.founded_month = self.founded_month
         company.number_of_employees = self.number_of_employees
+        company.name = self.name
         company.save!
         user.user_companies.create!(:company => company)
         company.investors

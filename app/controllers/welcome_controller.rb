@@ -16,17 +16,16 @@ class WelcomeController < ApplicationController
 	end
 
 	def investorlist
-	  @investors = UserCompany.investor_names_for_user_companies(user)
+	  @investors = UserCompany.investor_names_for_user_companies(user).uniq.order("name ASC")
 	  render :partial => 'investors.html.erb'	
 	end
 
 	def companylistfulldata
-	  @investors = Investor.where(:company_id => @companies.map(&:id).compact).select(:name).uniq.order("name ASC")		
 	  render :partial => 'competitors.html.erb'
 	end
 
 	def require_companies
-	  @companies ||= @user.user_companies.map(&:company).compact
+	  @companies ||= @user.user_companies.map(&:company).compact.sort_by { |x| x.name}
 	end
 
 	def set_user_registered
