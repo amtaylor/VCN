@@ -5,11 +5,9 @@ class UserCompany < ActiveRecord::Base
 
   class << self
   	def investor_names_for_user_companies(user)
-      companies = user.user_companies.map(&:company)
+      companies = user.user_companies.map(&:company_id)
       return [] if companies.empty?
-      investors = companies.map(&:investors)
-      return [] if investors.empty?
-      investors.first.select(:name).uniq
+      Investor.where("company_id in (?)", companies).select(:name).order("name ASC")
   	end
   end
 end

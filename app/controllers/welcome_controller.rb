@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
 	end
 
 	def investorlist
-	  @investors = UserCompany.investor_names_for_user_companies(user).uniq.order("name ASC")
+	  @investors = UserCompany.investor_names_for_user_companies(user).uniq.sort_by { |x| x.name}
 	  render :partial => 'investors.html.erb'	
 	end
 
