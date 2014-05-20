@@ -16,6 +16,8 @@ $(document).ready(function(){
 		$('body').addClass("loading"); //starts the 'loading' animation
 
   	});
+
+
 });
 
 
@@ -26,8 +28,6 @@ $(document).ready(function(){
             
             console.log('company submitted!'); //this just prints a confirmation to the console that the company was added
 
-            console.log(BASE_URL);
-
             $('#companyName1').show(); //unhides the search box after successful submission
 
             $( '#company-form' ).each(function(){
@@ -36,39 +36,53 @@ $(document).ready(function(){
 
             $('#company-form-button').button('reset'); //this resets the search button;	
 
-            $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
-            	
-            	$('.competitor-list').replaceWith(response);
-
-            	//console.log(response);
-
-            });  //updates companies
-
-            $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
-            	
-            	$('.investors').replaceWith(response);
-
-            });  //updates investors
-
-            $.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
-            	
-            	$('.competitor-list-fulldata').replaceWith(response);
-
-            });  //updates investors
-
-
-	    	$('body').removeClass("loading"); //takes away loading animation
-
-
-			if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
+           	if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
+				
+				$('body').removeClass("loading"); //takes away loading animation
+				
 				$(".comp-fail").show().delay(10000).fadeOut();
 			}
-			else{
-				$(".comp-success").show().delay(5000).fadeOut();
+			
+			else {
 
-				$(".signup1").show();// invites user to sign up-- this should probably only pop up the first time
+				var a = $.Deferred();
+				var b = $.Deferred();
+				var c = $.Deferred();
 
-			};
+	            $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
+	            	
+	            	$('.competitor-list').replaceWith(response);
+	            	a.resolve();
+
+	            	//console.log(response);
+
+	            });  //updates companies
+
+	            $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
+	            	
+	            	$('.investors').replaceWith(response);
+	            	b.resolve();
+
+	            });  //updates investors
+
+	            $.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
+	            	
+	            	$('.competitor-list-fulldata').replaceWith(response);
+	            	c.resolve();
+
+	            });  //updates investors
+
+		    	$.when(a, b, c).done(function(){ //this waits until everything has been updated to take away loading animation
+
+		    		$('body').removeClass("loading"); //takes away loading animation
+
+
+					$(".comp-success").show().delay(5000).fadeOut();
+
+					$(".signup1").show();// invites user to sign up-- this should probably only pop up the first time
+
+		    	});
+		    };	
 
       });
       return false;
@@ -94,9 +108,11 @@ $(document).ready(function(){
 
 		$('body').addClass("loading"); //starts the 'loading' animation
 
+		console.log(BASE_URL);
+
 		var getInvestors = function(comp){
 		    var url= BASE_URL + '/companies';
-		    $.post(url, {company_name: comp});
+			$.post(url, {company_name: comp});
 		}
 
 		$.when( getInvestors('OKCupid'),

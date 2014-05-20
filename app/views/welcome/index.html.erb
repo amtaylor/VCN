@@ -11,34 +11,37 @@
 	</div>
 </div> <!-- this closes the regular page containter, allows for full width image -->
 
-<div class="info text-center">
-	<div class="collapse-group">
-	
-		<div class="info2">
-			<div class="info3 in viewdetails">
-
-				
-						<div class="col-md-12"><div class="container">
-					<div class ="row">
-	
-							<h1>A free tool to keep track of who’s invested in the competition.</h1>
-							<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
-							<h3>examples:
-								<a href="#investors" title="Online Dating" id="photoshare"><em>Online Dating</em></a>, 
-								<a href="" title="Drones" id="drones"><em>Drones</em></a> <!-- 3D Robotics, Airware, Matternet, DroneDeploy -->
-							</h3>
-							
-							<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>&and;</strong></button>
-						</div>
-					</div>
-				</div> <!-- containter -->
-			</div>
-		</div>
+<% if @user_registered %>
+<% else %>
+	<div class="info text-center">
+		<div class="collapse-group">
 		
-	<button type="button" class="btn btn-default opn collapse viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>more info &or; </strong></button>					
-	</div>
+			<div class="info2">
+				<div class="info3 in viewdetails">
 
-</div> <!-- /info  -->
+					
+							<div class="col-md-12"><div class="container">
+						<div class ="row">
+		
+								<h1>A free tool to keep track of who’s invested in the competition.</h1>
+								<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+								<h3>examples:
+									<a href="#investors" title="Online Dating" id="photoshare"><em>Online Dating</em></a>, 
+									<a href="" title="Drones" id="drones"><em>Drones</em></a> <!-- 3D Robotics, Airware, Matternet, DroneDeploy -->
+								</h3>
+								
+								<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>&and;</strong></button>
+							</div>
+						</div>
+					</div> <!-- containter -->
+				</div>
+			</div>
+			
+		<button type="button" class="btn btn-default opn collapse viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>more info &or; </strong></button>					
+		</div>
+
+	</div> <!-- /info  -->
+<% end %>
 
 
 <div class="container">
@@ -75,10 +78,13 @@
 </div> <!-- /container -->
 
 
-
-<div class="alert alert-warning alert-dismissable fade in signup1">
-	<button type="button" class="close" id="signup1-close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	<h4><strong>Sign up to save your search.</strong></h4>
-	Get an alert any time one of your competitors gets funded.
-</div>
+<% if @user_registered %>
+	<div class="signup1"></div> 
+<% else %>
+	<div class="alert alert-warning alert-dismissable fade in signup1">
+		<button type="button" class="close" id="signup1-close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4><strong>Sign up to save your search.</strong></h4>
+		Get an alert any time one of your competitors gets funded.
+	</div>
+<% end %>
 
