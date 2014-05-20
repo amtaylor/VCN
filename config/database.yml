@@ -25,7 +25,6 @@ test:
   username: 
   password:
 
-
 # development:
 #   adapter: mysql2
 #   encoding: utf8
