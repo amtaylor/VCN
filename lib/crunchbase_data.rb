@@ -12,14 +12,16 @@ module Api
       self.name    = name.gsub(' ', '-')
       self.api_key = CRUNCHBASE_API_KEY
       self.uri     = URI("http://api.crunchbase.com/v/1/company/#{self.name}.js?api_key=#{api_key}")
-      self.user    = user
-      self.company = company || Company.find_or_create_by_name(:name => self.name)
+      self.user    = user      
     end
 
     def fetch
-      data = fetch_data(self.uri)
-      investor_data = parse_json(data)
-      create_company_investors_for(self.user, investor_data)
+      Company.transaction do
+        data = fetch_data(self.uri)
+        investor_data = parse_json(data)
+        create_company
+        create_company_investors_for(self.user, investor_data)
+      end
     end
 
     def fetch_data(url)
@@ -39,8 +41,10 @@ module Api
 
     def parse_json(data)
       json_body = JSON.parse(data)
+
       self.name = json_body['name']
       funding_rounds = json_body['funding_rounds']
+      
       self.exited = !(json_body['acquisition'] ||  json_body['ipo']).nil?
       self.total_money_raised = json_body['total_money_raised']
       self.founded_year = json_body['founded_year']
@@ -61,6 +65,10 @@ module Api
         end
       end
       investor
+    end
+
+    def create_company
+      self.company ||= Company.find_or_create_by_name(:name => self.name)
     end
 
     def create_company_investors_for(user, investor_data)
