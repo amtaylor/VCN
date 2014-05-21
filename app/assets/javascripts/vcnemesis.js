@@ -111,8 +111,8 @@ $(document).ready(function(){
 		console.log(BASE_URL);
 
 		var getInvestors = function(comp){
-		    var url= BASE_URL + '/companies';
-			$.post(url, {company_name: comp});
+		    var url= BASE_URL + '/company?name=' + comp;
+			$.get(url);
 		}
 
 		$.when( getInvestors('OKCupid'),
