@@ -10,14 +10,15 @@ class ApplicationController < ActionController::Base
 
     # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
-    if current_user
-      if session[:guest_user_id]
-        logging_in
-        guest_user.destroy if guest_user.is_a?(User)
-        session[:guest_user_id] = nil
-      end
+    Rails.logger.debug "CHECKING----"
+    if current_user      
+      logging_in 
+      guest_user.destroy if guest_user.is_a?(User)
+      session[:guest_user_id] = nil
+      Rails.logger.debug "CURRENTUSER=#{current_user.inspect}"
       current_user
     else
+      Rails.logger.debug "GUEST"
       guest_user
     end
   end
@@ -30,13 +31,12 @@ class ApplicationController < ActionController::Base
   # creating one as needed
   def guest_user
     begin
-      # Cache the value the first time it's gotten.
-      @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+      @cached_guest_user ||= User.find(session[:guest_user_id]) || create_guest_user
       sign_in(:user, @cached_guest_user)
-     rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
-       session[:guest_user_id] = nil
-       guest_user
+    rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
+      session[:guest_user_id] = nil
      end
+    @cached_guest_user
   end
 
   private
