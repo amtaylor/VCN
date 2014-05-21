@@ -9,7 +9,7 @@ module Api
     attr_accessor :company, :uri, :name, :api_key, :exited, :total_money_raised, :founded_year, :founded_month, :number_of_employees, :user
 
     def initialize(name = "", user, company)
-      self.name    = name.gsub(' ', '-')
+      self.name    = name.gsub(' ', '-').gsub(".", "-")
       self.api_key = CRUNCHBASE_API_KEY
       self.uri     = URI("http://api.crunchbase.com/v/1/company/#{self.name}.js?api_key=#{api_key}")
       self.user    = user      
