@@ -220,6 +220,10 @@ button.opn {
 }
 
 
+.second ul button.close:focus {
+  outline: none;
+}
+
 .note {
 	font-size: 12px;
 	padding-top: 25px;
