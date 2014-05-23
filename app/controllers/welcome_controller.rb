@@ -24,11 +24,11 @@ class WelcomeController < ApplicationController
 	  render :partial => 'competitors.html.erb'
 	end
 
-	def require_companies
-	  @companies ||= @user.user_companies.map(&:company).compact.sort_by { |x| x.name}
+	def require_companies	  
+	  @companies ||= @user.user_companies.nil? ? [] : @user.user_companies.map(&:company).compact.sort_by { |x| x.name}
 	end
 
-	def set_user_registered
+	def set_user_registered	  
 	  @user_registered ||= !/guest/.match(@user.email)
 	end
 
