@@ -1,6 +1,6 @@
 class NewInvestmentMailer < ActionMailer::Base
   default to: #List of people whose companies got funded
-  default from: 'no-reply@vcn.com'
+  default from: #'no-reply@vcn.com'
 
   def new_investment_email(user)
     @user = user
