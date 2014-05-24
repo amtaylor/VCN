@@ -161,6 +161,11 @@ a {
 	text-shadow: 0 0px 12px rgba(36,36,36,0.7);
 }
 
+.add-sample-comps:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+
 button.clps {
 	padding: 4px 15px;
 	font-size: 9px;

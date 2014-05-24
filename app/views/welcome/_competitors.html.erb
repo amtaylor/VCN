@@ -51,13 +51,13 @@
 									<% end %>
 								</td>
 								<td class="text-center">
-									<% if company.founded_month.nil? %>
+									<% if company.founded_year.nil? %>
 
-										<%= number_with_precision(
-										(Date.today() - Date.new(company.founded_year)) / 365, precision: 1) %>
-
-									<% elsif company.founded_year.nil? %>
 										--
+
+									<% elsif company.founded_month.nil? %>
+
+										<%= number_with_precision((Date.today() - Date.new(company.founded_year)) / 365, precision: 1) %>
 
 									<% else %>
 

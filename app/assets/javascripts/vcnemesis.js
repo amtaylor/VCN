@@ -104,42 +104,83 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-	$('#photoshare').click(function () {
+	$('#musicstreaming').click( function() {
+		compa = 'Beats By Dr Dre';
+		compb = 'Pandora';
+		compc = 'Rdio';
+		compd = 'Spotify';
+		addsamplecomps();
+	});
+
+	$('#bitcoin').click( function() {
+		compa = 'Bitpay';
+		compb = 'nfc direct';
+		compc = 'Coinbase';
+		compd = 'Payward';
+		addsamplecomps();
+	});
+
+
+	var addsamplecomps = function () {
 
 		$('body').addClass("loading"); //starts the 'loading' animation
 
-		console.log(BASE_URL);
-
-		var getInvestors = function(comp){
-		    var url= BASE_URL + '/company?name=' + comp;
+		var getInvestors = function(comp,desres){
+		    var url= BASE_URL + '/companies?name=' + comp;
 			$.get(url);
+			desres.resolve();
+			console.log(desres);
 		}
 
-		$.when( getInvestors('OKCupid'),
-	        getInvestors('Zoosk'),
-	        getInvestors('HowAboutWe'),
-	        getInvestors('Grouper')
-	      	).done(function(){
+		var aa = $.Deferred();
+		var bb = $.Deferred();
+		var cc = $.Deferred();
+		var dd = $.Deferred();
 
-	      		$.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
-					            	
-					$('.competitor-list').replaceWith(response);
+		getInvestors(compa,aa);
+		getInvestors(compb,bb);
+	    getInvestors(compc,cc);
+	    getInvestors(compd,dd);
 
-				}); //updates companies
+		var a = $.Deferred();
+		var b = $.Deferred();
+		var c = $.Deferred();
+		
+	    $.when(aa, bb, cc, dd).done(function(){ //this waits until everything has been updated to take away loading animation
 
-				$.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
-					
-					$('.investors').replaceWith(response);
+    		$.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
+	            	
+		    	$('.competitor-list').replaceWith(response);
+		    	a.resolve();
 
-				}); //updates investors
+		    	console.log("comp-list");
+
+		    });  //updates companies
+
+		    $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
+		    	
+		    	$('.investors').replaceWith(response);
+		    	b.resolve();
+
+		    });  //updates investors
+
+		    $.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
+		    	
+		    	$('.competitor-list-fulldata').replaceWith(response);
+		    	c.resolve();
+
+		    });  //updates investors
+
+    	});
 
 
-				$('body').removeClass("loading"); //takes away loading animation
+        $.when(a, b, c).done(function(){ //this waits until everything has been updated to take away loading animation
 
+    		$('body').removeClass("loading"); //takes away loading animation
 
-	    	});
+    	});
 
-	});
+	}
 
 });
 
