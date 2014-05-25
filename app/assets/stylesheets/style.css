@@ -156,6 +156,7 @@ a {
 
 @media (max-width: 767px) {
   .info3 {
+    background-position:25%;
     /* background-size: 100% auto; */
   }
 
@@ -168,10 +169,21 @@ a {
 .info h1, .info h2, .info h3 {
 	color: white;
 	text-shadow: 0 0px 12px rgba(36,36,36,0.7);
-	padding: 50px;
+	padding: 50px 20px;
+}
+
+.info h1 {
+  padding-top: 30px;
+  padding-bottom:20px;
+}
+
+.info h2 {
+  padding-top: 80px;
+  padding-bottom:10px;
 }
 
 .info h3 {
+  padding-top:10px;
 	font-size: 16px;
 }
 
