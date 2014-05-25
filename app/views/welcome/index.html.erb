@@ -13,29 +13,55 @@
 
 <% if @user_registered %>
 <% else %>
-	<div class="info text-center">
+	<div class="info text-center" id="slide-1" class="homeSlide">
 		<div class="collapse-group">
 		
-			<div class="info2">
+			<div class="info2"
+				data-center="background-position: 50% 0px;"
+        		data-top-bottom="background-position: 50% 200px;"
+				data-anchor-target="#slide-1">
 				<div class="info3 in viewdetails">
+					<div class="col-md-12">
+						<div class="container">
+							<div class ="row">
+								<div class="slide-slow"
+									data-center="opacity: 1"
+					                data-center-top="opacity: 0"
+					                data-bottom="opacity: 1;"
+					                data-anchor-target="#slide-1">
+								</div>
+								<div class="slide-reg"
+									data-center="opacity: 1"
+					                data-center-top="opacity: 0"
+					                data-bottom="opacity: 1;"
+					                data-anchor-target="#slide-1">
+									<h1>A free tool to keep track of who’s invested in the competition.</h1>
+									<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+									<h3>examples:
+										<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
+										<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
+									</h3>
+								</div>
 
-					
-					<div class="col-md-12"><div class="container">
-						<div class ="row">
-		
-								<h1>A free tool to keep track of who’s invested in the competition.</h1>
-								<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
-								<h3>examples:
-									<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
-									<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
-								</h3>
+						        <!-- new stuff end -->
+			
+								<!-- old stuff
+									<h1>A free tool to keep track of who’s invested in the competition.</h1>
+									<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+									<h3>examples:
+										<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
+										<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
+									</h3>
+
+								old stuff end -->
 								
-								<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong><span class="glyphicon glyphicon-chevron-up white"></span></strong></button>
 							</div>
 						</div>
 					</div> <!-- containter -->
 				</div>
+				<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong><span class="glyphicon glyphicon-chevron-up white"></span></strong></button>
 			</div>
+
 			
 		<button type="button" class="btn btn-default opn collapse viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>more &nbsp;info &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></strong></button>					
 		</div>

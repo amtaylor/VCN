@@ -125,23 +125,23 @@ a {
 /* info */
 
 .info {
-	
+	border-bottom: 1px solid gray;
 }
 
 .info2 {
 	/* background image stuff */
-	background-image: url('../images/SocNet4.jpg');
+	background-image: url('../images/rw.jpg');
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
 	background-position: center center;
 	width: 100%;
+  
 }
 
 .info3 {
 	padding: 50px 0px 0px 0px;
-	border-bottom: 1px solid gray;
 	/* background image layer2 stuff */
 	/* background: url('../img/pattern-bg.png'); */
 
@@ -195,6 +195,23 @@ button.opn {
 	line-height: 1;
 	border-radius: 0px;
 	border-top: none;
+}
+
+/* parallax stuff */
+
+#slide-1 .bcg {
+  background-image:url('../images/SocNet4.jpg');
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+}
+
+.slide-slow {
+  background-image:url('../images/SocNet2(float).png');
+  height: 100%;
 }
 
 /* "second" */
