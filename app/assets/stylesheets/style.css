@@ -168,12 +168,25 @@ a {
 
 button.clps {
 	padding: 4px 15px;
-	font-size: 9px;
+	font-size: 20px;
 	line-height: 1;
-
 	border-radius: 0px;
 	border-bottom: none;
 	margin-top: 50px;
+  margin-left: 0px;
+  border: none;
+  background: none;
+  color: white;
+}
+
+button.clps:focus {
+  outline: none;
+}
+
+button.clps:hover, button.clps:focus, button.clps:active {
+  color: rgb(101,165,204);
+  background: none;
+  border: none;
 }
 
 button.opn {
