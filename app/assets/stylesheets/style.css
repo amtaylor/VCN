@@ -30,8 +30,9 @@ h3 {
 }
 
 a {
-	color: rgb(101,165,204);
-	/* color: rgb(20,133,204); */   /* alt color */
+  color: #C92229;
+	/* color: rgb(101,165,204); */  /* alt color1 */
+	/* color: rgb(20,133,204); */   /* alt color2 */
 }
 
 .btn{
@@ -41,10 +42,10 @@ a {
 /* nav bar */
 
 .navbar {
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f5f5f5), to(#f5f5f5));
-  background-image: -webkit-linear-gradient(top, #f5f5f5, 0%, #f5f5f5, 100%);
-  background-image: -moz-linear-gradient(top, #f5f5f5 0%, #f5f5f5 100%);
-  background-image: linear-gradient(to bottom, #f5f5f5 0%, #f5f5f5 100%);  /* These used to be #f8f8f8 #ffffff. */
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#FFFFFF), to(#FFFFFF));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, 0%, #FFFFFF, 100%);
+  background-image: -moz-linear-gradient(top, #FFFFFF 0%, #FFFFFF 100%);
+  background-image: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 100%);  /* These used to be #f8f8f8 #ffffff. */
   background-repeat: repeat-x;
   border-bottom: 1px solid #d4d4d4; /* added this */
   /* border-radius: 4px; */
@@ -130,7 +131,7 @@ a {
 
 .info2 {
 	/* background image stuff */
-	background-image: url('../images/rw.jpg');
+	background-image: url('../images/rw(flip).jpg');
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -142,11 +143,12 @@ a {
 }
 
 .info3 {
-	padding: 50px 0px 0px 0px;
+	padding: 20px 0px 0px 0px;
   background-image: url('../images/SocNet2(float).png');
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: auto 97%;
+  /* background-size: 50% auto; */
 	/* background image layer2 stuff */
 	/* background: url('../img/pattern-bg.png'); */
   height: 100%;
@@ -169,17 +171,19 @@ a {
 .info h1, .info h2, .info h3 {
 	color: white;
 	text-shadow: 0 0px 12px rgba(36,36,36,0.7);
-	padding: 50px 20px;
+	padding: 50px 0px;
+  text-align: left;
 }
 
 .info h1 {
-  padding-top: 30px;
-  padding-bottom:20px;
+  padding-top: 0px;
+  padding-bottom:10px;
 }
 
 .info h2 {
-  padding-top: 80px;
+  padding-top: 10px;
   padding-bottom:10px;
+  max-width: 450px;
 }
 
 .info h3 {
