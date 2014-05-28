@@ -35,6 +35,12 @@ a {
 	/* color: rgb(20,133,204); */   /* alt color2 */
 }
 
+a:hover {
+  color: #C92229;
+  text-decoration: none;
+  text-shadow: 0 0px 6px rgba(35,35,35,0.6);
+}
+
 .btn{
 	margin-left:8px;
 }
@@ -153,6 +159,14 @@ a {
 	/* background: url('../img/pattern-bg.png'); */
   height: 100%;
   height: 100vh;
+  /* Firefox */
+  height: -moz-calc(100vh - 50px);
+  /* WebKit */
+  height: -webkit-calc(100vh - 50px);
+  /* Opera */
+  height: -o-calc(100vh - 50px);
+  /* Standard */
+  height: calc(100vh - 50px);
 
 }
 
@@ -165,7 +179,16 @@ a {
 }
 
 .info3 .container {
+  height: 100%;
   height: 100vh;
+  /* Firefox */
+  height: -moz-calc(100vh - 50px);
+  /* WebKit */
+  height: -webkit-calc(100vh - 50px);
+  /* Opera */
+  height: -o-calc(100vh - 50px);
+  /* Standard */
+  height: calc(100vh - 50px);
 }
 
 .info h1, .info h2, .info h3 {
@@ -192,7 +215,7 @@ a {
 }
 
 .info a {
-	text-shadow: 0 0px 12px rgba(36,36,36,0.7);
+  text-shadow: 0 0px 10px rgba(219,219,219,0.8);
 }
 
 .add-sample-comps:hover {
@@ -212,17 +235,15 @@ button.clps {
   background: none;
   color: white;
   position: absolute;
-  bottom: 55px;
-}
-
-button.clps:focus {
-  outline: none;
+  bottom: 25px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 button.clps:hover, button.clps:focus, button.clps:active {
-  color: rgb(101,165,204);
+  color: #C92229;
   background: none;
   border: none;
+  outline: none;
 }
 
 button.opn {
@@ -234,6 +255,17 @@ button.opn {
 }
 
 /* parallax stuff */
+
+.info3 img.road-sign {
+  position: absolute;
+  top: 110px;
+  right: 15%;
+}
+
+.info3 img.car {
+  position: absolute;
+  left: 0%;
+}
 
 #slide-1 .bcg {
   background-image:url('../images/SocNet4.jpg');
@@ -367,6 +399,13 @@ body.loading .loading-modal {
 
 #viewCompany {
 	margin-bottom: 40px;
+}
+
+.form-control:focus {
+  border-color: #C92229;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(201,34,41,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(201,34,41,0.6);
 }
 
 

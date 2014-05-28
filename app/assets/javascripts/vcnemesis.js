@@ -188,7 +188,7 @@ $(document).ready(function(){
 	 
  
 $(window).scroll(function () {  //parallax effects stuff
-   if ($(window).scrollTop() >= 75 ) {
+   if ($(window).scrollTop() >= 50 ) {
    	$('.info2').css( "background-image", "url('../images/rw(flip,bw).jpg')" );
 	$('.info3').css( "background-image", "url('../images/SocNet2(float,red).png')" );
    }
