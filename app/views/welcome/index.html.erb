@@ -13,29 +13,64 @@
 
 <% if @user_registered %>
 <% else %>
-	<div class="info text-center">
+	<div class="info text-center" id="slide-1" class="homeSlide">
 		<div class="collapse-group">
 		
-			<div class="info2">
-				<div class="info3 in viewdetails">
+			<div class="info2"
+				data-top="background-position: 50% 0px;"
+        		data-top-bottom="background-position: 50% 250px;"
+				data-anchor-target="#slide-1">
 
-					
-					<div class="col-md-12"><div class="container">
-						<div class ="row">
-		
-								<h1>A free tool to keep track of who’s invested in the competition.</h1>
-								<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
-								<h3>examples:
-									<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
-									<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
-								</h3>
+				<div
+				<div class="info3 in viewdetails"
+					data-100-top="background-position: 100% 100%;"
+	        		data-top-bottom="background-position: 50% 4500px;">
+					<div class="col-md-12">
+						<div class="container">
+							<div class ="row">
+								<div class="slide-reg"
+									data-top="top: 0px"
+					        		data-80="top: 500px"
+					                data-anchor-target="#slide-1">
+									<h1>A free tool to see <!--keep track of --> who’s invested in the competition.</h1>
+									<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+									<h3>examples:
+										<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
+										<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
+									</h3>
+								</div>
+								<img src="//vcnemesis.com/images/SandHillRoad(g).png" class="road-sign"
+				        		data-40="top: 75px; opacity: 0"
+				        		data-75="top: 75px; opacity: 1"
+				        		data-300="top: 300px; opacity: 1"
+								data-anchor-target="#slide-1">
+
+								<img src="//vcnemesis.com/images/ts(s,bl,trans).png" class="car hidden-xs hidden-sm"
+				        		data-top="top: 150px; left: -400px"
+        						data-200="top: 300px; left: 3%"
+								data-anchor-target="#slide-1">
+
+						        <!-- new stuff end -->
+			
+								<!-- old stuff
+									<h1>A free tool to keep track of who’s invested in the competition.</h1>
+									<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+									<h3>examples:
+										<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
+										<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
+									</h3>
+
+								old stuff end -->
 								
 								<button type="button" class="btn btn-default clps in viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong><span class="glyphicon glyphicon-chevron-up white"></span></strong></button>
+
 							</div>
 						</div>
 					</div> <!-- containter -->
 				</div>
+				
 			</div>
+
 			
 		<button type="button" class="btn btn-default opn collapse viewdetails" data-toggle="collapse" data-target=".viewdetails"><strong>more &nbsp;info &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></strong></button>					
 		</div>
