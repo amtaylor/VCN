@@ -12,6 +12,8 @@ $(document).ready(function(){
 		var $btn = $(this)
 	    $btn.button('...');
 
+	    $('#homepage-add-companies').css("display","none");
+
 	    var targetOffset = $("#main-section").offset().top - 50;
 
 	    $('html, body').animate({
