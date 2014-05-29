@@ -137,6 +137,7 @@ a:hover {
 
 .info2 {
 	/* background image stuff */
+  background-image: url('../images/rw(flip,bw).jpg');
 	background-image: url('../images/rw(flip).jpg');
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
@@ -150,6 +151,7 @@ a:hover {
 
 .info3 {
 	padding: 20px 0px 0px 0px;
+  background-image: url('../images/SocNet2(float,red).png');
   background-image: url('../images/SocNet2(float).png');
   background-repeat: no-repeat;
   background-position: center bottom;

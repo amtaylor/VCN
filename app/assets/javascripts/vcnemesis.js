@@ -2,6 +2,17 @@ $(document).ready(function(){
 	$(".alert").alert();
 });
 
+$(document).ready(function(){  //pre-load images to get rid of loading 'flash'
+	$.fn.preload = function() {
+	    this.each(function(){
+	        $('<img/>')[0].src = this;
+	    });
+	}
+
+	$([ BASE_URL + 'images/rw(flip,bw).jpg', BASE_URL + 'images/rw(flip).jpg' , BASE_URL + 'images/SocNet2(float,red).png' ]).preload();
+
+});
+
 
 // js for homepage company-form
 
