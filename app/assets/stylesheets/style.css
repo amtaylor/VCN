@@ -200,18 +200,21 @@ a:hover {
 
 .info h1 {
   padding-top: 0px;
-  padding-bottom:10px;
+  padding-bottom:0px;
 }
 
 .info h2 {
-  padding-top: 10px;
-  padding-bottom:10px;
+  padding-top: 0px;
+  padding-bottom: 50px;
   max-width: 450px;
+  color: rgb(200,200,200);
+  font-size: 18px;
 }
 
 .info h3 {
   padding-top:10px;
 	font-size: 16px;
+
 }
 
 .info a {
@@ -254,6 +257,32 @@ button.opn {
 	border-top: none;
 }
 
+#homepage-add-companies {
+  text-align: left;
+  background: white;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 335px;
+  box-shadow: 0 0px 12px rgba(36,36,36,0.7);
+  margin-left:30px;
+}
+
+.info #homepage-add-companies h3 {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+  text-shadow: none;
+  color: #C92229;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.info #homepage-add-companies .btn {
+  color: white;
+  background-color: #C92229;
+  border-color: #ccc;
+}
+
 /* parallax stuff */
 
 .info3 img.road-sign {
@@ -278,6 +307,18 @@ button.opn {
 }
 
 /* "second" */
+
+#main-section {
+  min-height: 100vh;
+  /* Firefox */
+  min-height: -moz-calc(100vh - 50px - 60px);
+  /* WebKit */
+  min-height: -webkit-calc(100vh - 50px - 60px);
+  /* Opera */
+  min-height: -o-calc(100vh - 50px - 60px);
+  /* Standard */
+  min-height: calc(100vh - 50px - 60px);
+}
 
 .second {
 	padding-top: 10px;
@@ -389,12 +430,31 @@ button.opn {
                 no-repeat; /* alternative loading image: url('../images/FhHRx.gif') */
 }
 
+.loading-modal2 {
+    display:    none;
+    position: absolute;
+    z-index: 1000;
+    top: calc(100vh);
+    left: 0;
+    height: calc(100vh - 50px);
+    width: 100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../images/output_s3gqZK_300ms_v3.gif') 
+                50% 50% 
+                no-repeat;
+}
+
 /* Anytime the body has the loading class, our
    modal element will be visible */
 body.loading .loading-modal {
     display: block;
 }
 
+/* Anytime the #main-section has the loading class, our
+   modal element will be visible */
+#main-section.loading .loading-modal2 {
+    display: block;
+}
 
 
 #viewCompany {

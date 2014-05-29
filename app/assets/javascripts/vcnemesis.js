@@ -3,6 +3,89 @@ $(document).ready(function(){
 });
 
 
+// js for homepage company-form
+
+$(document).ready(function(){ 
+
+	$('#homepage-company-form-button').click(function () {
+
+		var $btn = $(this)
+	    $btn.button('...');
+
+	    var targetOffset = $("#main-section").offset().top - 50;
+
+	    $('html, body').animate({
+	        scrollTop: targetOffset
+	    }, 4000);
+
+	    $('#main-section').addClass("loading"); //starts the 'loading' animation
+
+	    // $( "#company-form #companyName1" ).focus(); //this throws off how far down the window auto scrolls
+
+	});
+
+	var $form = $('form#homepage-company-form');
+
+   $form.submit(function(){
+      $.get($(this).attr('action'), $(this).serialize(), function(response){ //this is called when the form is submitted
+    
+            $( '#homepage-company-form' ).each(function(){
+			    this.reset();
+			}); //This resets the competitor field in the form
+
+            $('#homepage-company-form-button').button('reset'); //this resets the search button;	
+
+           	if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
+				
+				$(".comp-fail").show().delay(10000).fadeOut();
+			}
+			
+			else {
+
+				var a = $.Deferred();
+				var b = $.Deferred();
+				var c = $.Deferred();
+
+	            $.get(BASE_URL + '/companylist', $(this).serialize(), function(response){
+	            	
+	            	$('.competitor-list').replaceWith(response);
+	            	a.resolve();
+
+	            	//console.log(response);
+
+	            });  //updates companies
+
+	            $.get(BASE_URL + '/investorlist', $(this).serialize(), function(response){
+	            	
+	            	$('.investors').replaceWith(response);
+	            	b.resolve();
+
+	            });  //updates investors
+
+	            $.get(BASE_URL + '/companylistfulldata', $(this).serialize(), function(response){
+	            	
+	            	$('.competitor-list-fulldata').replaceWith(response);
+	            	c.resolve();
+
+	            });  //updates investors
+
+		    	$.when(a, b, c).done(function(){ //this waits until everything has been updated to take away loading animation
+
+		    		$('#main-section').removeClass("loading"); //takes away loading animation
+
+					$(".comp-success").show().delay(5000).fadeOut();
+
+					$(".signup1").show();// invites user to sign up-- this should probably only pop up the first time
+
+		    	});
+		    };	
+
+      });
+      return false;
+   });
+
+});
+
 //This is some JS to not leave the page when the form is submitted (I think)
 
 $(document).ready(function(){
@@ -75,7 +158,6 @@ $(document).ready(function(){
 		    	$.when(a, b, c).done(function(){ //this waits until everything has been updated to take away loading animation
 
 		    		$('body').removeClass("loading"); //takes away loading animation
-
 
 					$(".comp-success").show().delay(5000).fadeOut();
 
@@ -188,7 +270,7 @@ $(document).ready(function(){
 	 
  
 $(window).scroll(function () {  //parallax effects stuff
-   if ($(window).scrollTop() >= 50 ) {
+   if ($(window).scrollTop() > 0 ) {
    	$('.info2').css( "background-image", "url('../images/rw(flip,bw).jpg')" );
 	$('.info3').css( "background-image", "url('../images/SocNet2(float,red).png')" );
    }

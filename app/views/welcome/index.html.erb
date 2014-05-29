@@ -34,21 +34,43 @@
 					                data-anchor-target="#slide-1">
 									<h1>A free tool to see <!--keep track of --> who’s invested in the competition.</h1>
 									<h2>Use VC Nemesis to figure out who you should (and shouldn’t) be talking to.</h2>
+									<div id="homepage-add-companies">
+										<h3>Add a competitor:</h3>		
+
+										<form class="form-inline" id="homepage-company-form" role="form" action="<%= root_url %>/companies" method="get">  <!-- the localhost link here probably needs to be changed at some point -->
+
+											<div class="form-group">
+												<label class="sr-only" for="exampleCompany">Company Name</label>
+												<!-- Always add labels- Screen readers will have trouble with your forms if you don't include a label for every input. For these inline forms, you can hide the labels using the .sr-only class. -->
+													<input type="text" class="form-control" id="companyName1" name="name" placeholder="enter competitor name" autofocus>		
+											</div>					
+
+											<div class="form-group">
+													<button type="submit" id="homepage-company-form-button" class="btn btn-default" data-loading-text="searching...">add!</button>
+											</div>
+
+										</form>
+
+									</div>
+
+									<!--
 									<h3>examples:
 										<a class="add-sample-comps" title="Music streaming" id="musicstreaming"><em>Music streaming</em></a>, 
 										<a class="add-sample-comps" title="Bitcoin" id="bitcoin"><em>Bitcoin</em></a>
 									</h3>
+									-->
+
 								</div>
 								<img src="//vcnemesis.com/images/SandHillRoad(g).png" class="road-sign"
 				        		data-40="top: 75px; opacity: 0"
 				        		data-75="top: 75px; opacity: 1"
 				        		data-300="top: 300px; opacity: 1"
-								data-anchor-target="#slide-1">
+								data-anchor-target="#slide-1"> <!-- Might need to change this url to src="//localhost:3000/images/SandHillRoad(g).png" -->
 
 								<img src="//vcnemesis.com/images/ts(s,bl,trans).png" class="car hidden-xs hidden-sm"
 				        		data-top="top: 150px; left: -400px"
         						data-200="top: 300px; left: 3%"
-								data-anchor-target="#slide-1">
+								data-anchor-target="#slide-1"> 
 
 						        <!-- new stuff end -->
 			
@@ -79,7 +101,7 @@
 <% end %>
 
 
-<div class="container">
+<div class="container" id="main-section">
 
 	<div class ="row">
 	
@@ -98,7 +120,7 @@
 					</div>
 				</div>  <!-- /col-md-4 -->
 		
-				<div class="col-md-8">
+				<div class="col-md-8 hide-if-no-company">
 
 					<%= render 'welcome/investors' %>
 
@@ -110,6 +132,9 @@
 
 		</div> <!-- /div col-md-12 -->
 	</div> <!-- /div row -->
+
+	<div class="loading-modal2"><!-- Place at bottom of page, This is the modal that appears when this info is loading --></div>
+	
 </div> <!-- /container -->
 
 
@@ -124,6 +149,8 @@
 		Get an alert any time one of your competitors gets funded.
 	</div>
 	-->
+
+
 
 <% end %>
 
