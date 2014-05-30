@@ -44,24 +44,27 @@
   	<%= render 'layouts/ga' %>	
 </head>
 <body>
-
+	
 	<div id="wrap"> <!-- added this to get the sticky footer-->
 
-
 		<%= render 'layouts/header' %>
-
-		<div class="container">
-			<div class ="row">
-				<div class="col-md-12">
-					<%= yield %>
+		
+		<div id="skrollr-body">
+			<div class="container">
+				<div class ="row">
+					<div class="col-md-12">
+						<%= yield %>
+					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>	<!-- end wrap -->
+
 	<%= render 'layouts/footer' %>
 
 	<%= render 'layouts/authentication' %>	
+
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -72,10 +75,14 @@
 
 	<!-- parallax stuff -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.25/skrollr.min.js"></script>
+
     <script type="text/javascript">
-    	var s = skrollr.init({  // required to initialize skrollr
-		    forceHeight: false
-		});
+    	if (screen.width >= 992) {
+    		var s = skrollr.init({  // required to initialize skrollr
+			    forceHeight: false
+			});
+		}
+
     </script>
 	
 	<!--
