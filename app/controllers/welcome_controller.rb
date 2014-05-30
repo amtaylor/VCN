@@ -4,10 +4,11 @@ class WelcomeController < ApplicationController
   	
   	#TODO fix by creating temporary user
   	def index  	  
-  	  if @companies.nil? || current_user.nil?
+  	  if @companies.nil? || user.nil?
   	    @investors = []	
   	  else
-  	  	@investors = Investor.where(:company_id => @companies.map(&:id).compact).select(:name).uniq.order("name ASC")
+  	  	Rails.logger.debug "Investors=NIL"
+  	  	@investors = UserCompany.investor_names_for_user_companies(user).uniq.sort_by { |x| x.name}
   	  end
 	end
 
