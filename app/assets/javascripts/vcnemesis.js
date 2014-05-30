@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 	    $('html, body').animate({
 	        scrollTop: targetOffset
-	    }, 4000);
+	    }, 3000);
 
 	    $('#main-section').addClass("loading"); //starts the 'loading' animation
 
@@ -50,7 +50,10 @@ $(document).ready(function(){
 
            	if (response.status === "Company Doesn't Exist") { //no need to parse this as JSON because its already a javascript object...
 				
-				$(".comp-fail").show().delay(10000).fadeOut();
+				$(".comp-fail").show().delay(8000).fadeOut();
+
+				$('#main-section').removeClass("loading"); //takes away loading animation
+
 			}
 			
 			else {
@@ -136,7 +139,7 @@ $(document).ready(function(){
 				
 				$('body').removeClass("loading"); //takes away loading animation
 				
-				$(".comp-fail").show().delay(10000).fadeOut();
+				$(".comp-fail").show().delay(8000).fadeOut();
 			}
 			
 			else {
