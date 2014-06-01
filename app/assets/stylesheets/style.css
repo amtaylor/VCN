@@ -41,6 +41,10 @@ a:hover {
   text-shadow: 0 0px 6px rgba(35,35,35,0.6);
 }
 
+.navbar a:hover {
+  text-shadow: none;
+}
+
 .btn{
 	margin-left:8px;
 }
@@ -169,8 +173,18 @@ a:hover {
   height: -o-calc(100vh - 50px);
   /* Standard */
   height: calc(100vh - 50px);
+  min-height: 500px;
 
 }
+
+@media (max-width: 767px) {
+  
+  .info3 {
+    height: 100%;
+  }
+
+}
+
 
 @media (max-width: 767px) {
   .info3 {
@@ -191,7 +205,17 @@ a:hover {
   height: -o-calc(100vh - 50px);
   /* Standard */
   height: calc(100vh - 50px);
+  min-height: 500px;
 }
+
+@media (max-width: 767px) {
+  
+  .info3 .container {
+    height: 100%;
+  }
+
+}
+
 
 .info h1, .info h2, .info h3 {
 	color: white;
@@ -270,6 +294,15 @@ button.opn {
   margin-left:30px;
 }
 
+@media (max-width: 480px) {
+  
+  #homepage-add-companies {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+}
+
 .info #homepage-add-companies h3 {
   margin: 0px 0px 20px 0px;
   padding: 0px;
@@ -284,6 +317,16 @@ button.opn {
   background-color: #C92229;
   border-color: #ccc;
 }
+
+#homepage-company-form div.competitor {
+  width: 203px;
+}
+
+#homepage-company-form .form-group {
+  display: inline-block;
+}
+
+
 
 /* parallax stuff */
 
@@ -311,6 +354,7 @@ button.opn {
 /* "second" */
 
 #main-section {
+
   min-height: 100vh;
   /* Firefox */
   min-height: -moz-calc(100vh - 50px - 60px);
