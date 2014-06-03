@@ -58,3 +58,7 @@ group :production do
   #Heroku asks to specify the ruby version
   ruby "2.1.1"
 end
+
+gem 'newrelic_rpm'
+
+
