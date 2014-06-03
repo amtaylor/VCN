@@ -39,8 +39,8 @@ $(document).ready(function(){
 
 	var $form = $('form#homepage-company-form');
 
-   $form.submit(function(){
-      $.get($(this).attr('action'), $(this).serialize(), function(response){ //this is called when the form is submitted
+    $form.submit(function(){
+      	$.get($(this).attr('action'), $(this).serialize(), function(response){ //this is called when the form is submitted
     
             $( '#homepage-company-form' ).each(function(){
 			    this.reset();
@@ -91,14 +91,16 @@ $(document).ready(function(){
 
 					$(".comp-success").show().delay(5000).fadeOut();
 
+					$( "#company-form #companyName1" ).focus();
+
 					$(".signup1").show();// invites user to sign up-- this should probably only pop up the first time
 
 		    	});
 		    };	
 
-      });
+      	});
       return false;
-   });
+   	});
 
 });
 
