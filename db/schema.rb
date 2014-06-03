@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140601025955) do
     t.string   "crunchbase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_cron",       default: false
   end
 
   create_table "user_companies", force: true do |t|
