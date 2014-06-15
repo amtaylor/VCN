@@ -9,7 +9,9 @@ $(document).ready(function(){  //pre-load images to get rid of loading 'flash'
 	    });
 	}
 
+	/*  This is to preload certain images
 	$([ BASE_URL + 'images/rw(flip,bw).jpg', BASE_URL + 'images/rw(flip).jpg' , BASE_URL + 'images/SocNet2(float,red).png' ]).preload();
+	*/
 
 });
 
@@ -29,7 +31,7 @@ $(document).ready(function(){
 
 	    $('html, body').animate({
 	        scrollTop: targetOffset
-	    }, 3000);
+	    }, 5000);
 
 	    $('#main-section').addClass("loading"); //starts the 'loading' animation
 
@@ -286,7 +288,7 @@ $(document).ready(function(){
 
 
 	 
- 
+/*
 $(window).scroll(function () {  //parallax effects stuff
    if ($(window).scrollTop() > 0 ) {
    	$('.info2').css( "background-image", "url('../images/rw(flip,bw).jpg')" );
@@ -294,10 +296,10 @@ $(window).scroll(function () {  //parallax effects stuff
    }
    else {
 	$('.info2').css( "background-image", "url('../images/rw(flip).jpg')" );
-	$('.info3').css( "background-image", "url('../images/SocNet2(float).png')" );
-	console.log("yea!");
+	$('.info3').css( "background-image", "url('../images/SocNet2(float)bw.png')" );
    }
 });
+*/
 
 
 

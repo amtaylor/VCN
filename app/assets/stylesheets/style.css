@@ -141,8 +141,8 @@ a:hover {
 
 .info2 {
 	/* background image stuff */
-  background-image: url('../images/rw(flip,bw).jpg');
-	background-image: url('../images/rw(flip).jpg');
+  /*background-image: url('../images/rw(flip,bw).jpg');*/
+	background-image: url('../images/rw(flip)v3.jpg');
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -155,8 +155,8 @@ a:hover {
 
 .info3 {
 	padding: 20px 0px 0px 0px;
-  background-image: url('../images/SocNet2(float,red).png');
-  background-image: url('../images/SocNet2(float).png');
+  /* background-image: url('../images/SocNet2(float,red).png'); */
+  background-image: url('../images/SocNet2(float)bw.png');
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: auto 97%;
@@ -233,8 +233,10 @@ a:hover {
   padding-top: 0px;
   padding-bottom: 50px;
   max-width: 450px;
-  color: rgb(200,200,200);
+  /* color: rgb(200,200,200); */
+  color: white;
   font-size: 18px;
+  line-height: 22px;
 }
 
 .info h3 {
@@ -286,7 +288,7 @@ button.opn {
 #homepage-add-companies {
   text-align: left;
   background: white;
-  padding: 30px;
+  padding: 25px 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
   width: 335px;
