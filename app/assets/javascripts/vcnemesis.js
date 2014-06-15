@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 	    $('html, body').animate({
 	        scrollTop: targetOffset
-	    }, 5000);
+	    }, 3000);
 
 	    $('#main-section').addClass("loading"); //starts the 'loading' animation
 
