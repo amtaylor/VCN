@@ -142,7 +142,8 @@ a:hover {
 .info2 {
 	/* background image stuff */
   /*background-image: url('../images/rw(flip,bw).jpg');*/
-	background-image: url('../images/rw(flip)v3.jpg');
+  background-image: url('../images/rw(flip)v4.jpg');
+	background-image: url('../images/rw(flip)v6.jpg');
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
