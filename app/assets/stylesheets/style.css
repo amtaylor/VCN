@@ -126,6 +126,32 @@ a:hover {
 	margin-top: 12px;
 }  */
 
+.nav .caret {
+  border-top-color: #777777;
+  border-bottom-color: #777777;
+}
+
+.nav .btn-link {
+  color: #777777;
+}
+
+.nav .btn-link:hover {
+  color: #C92229;
+  text-decoration: none;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+  color: #C92229;
+}
+
+.nav .btn-link{
+  margin-left: 0px;
+}
+
+.FAQ-link {
+  margin-right: 26px;
+}
+
 .greeting {
   width: 150px;
   overflow: hidden;
