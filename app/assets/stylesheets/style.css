@@ -184,13 +184,13 @@ a:hover {
     height: 100%;
   }
 
-}
-
-
-@media (max-width: 767px) {
   .info3 {
     background-position:25%;
     /* background-size: 100% auto; */
+  }
+
+  .info3 .container {
+    height: 100%;
   }
 
 }
@@ -208,15 +208,6 @@ a:hover {
   height: calc(100vh - 50px);
   min-height: 500px;
 }
-
-@media (max-width: 767px) {
-  
-  .info3 .container {
-    height: 100%;
-  }
-
-}
-
 
 .info h1, .info h2, .info h3 {
 	color: white;
@@ -665,5 +656,21 @@ body {
   height: auto;
   margin-bottom: 15px;
   padding: 7px 9px;
+}
+
+/* Static Pages
+-------------------------------------------------- */
+
+.FAQ-header {
+  margin-bottom: 24px;
+}
+
+.FAQ-Q {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.FAQ-A {
+  margin-bottom: 30px;
 }
 

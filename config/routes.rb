@@ -1,5 +1,6 @@
 Vcn::Application.routes.draw do
 
+  
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   get "welcome/index"
@@ -12,6 +13,8 @@ Vcn::Application.routes.draw do
   get 'companylistfulldata' => 'welcome#companylistfulldata'
 
   get 'heartbeat' => 'health#index'
+
+  get "/FAQ", to: "static_pages#FAQ"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
