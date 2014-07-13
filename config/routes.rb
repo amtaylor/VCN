@@ -15,6 +15,7 @@ Vcn::Application.routes.draw do
   get 'heartbeat' => 'health#index'
 
   get "/FAQ", to: "static_pages#FAQ"
+  get "/a-competitors-investor-is-your-enemy" , to: "static_pages#a_competitors_investor_is_your_enemy"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

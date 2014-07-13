@@ -38,7 +38,12 @@ a {
 a:hover {
   color: #C92229;
   text-decoration: none;
-  text-shadow: 0 0px 6px rgba(35,35,35,0.6);
+  /* text-shadow: 0 0px 6px rgba(35,35,35,0.6); */
+  color: rgb(115,130,162);
+}
+
+a:focus {
+  text-decoration: none;
 }
 
 .navbar a:hover {
@@ -146,11 +151,34 @@ a:hover {
 
 .nav .btn-link{
   margin-left: 0px;
+  padding-left:;
 }
 
 .FAQ-link {
   margin-right: 26px;
 }
+
+.navbar-right .dropdown ul.dropdown-menu {
+  right: auto;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  background-color: #C92229;
+  color: white;
+}
+
+.btn-link:hover, .btn-link:focus {
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+
+ .dropdown-menu {
+    margin-top: 0px;
+ }
+
 
 .greeting {
   width: 150px;
@@ -687,8 +715,20 @@ body {
 /* Static Pages
 -------------------------------------------------- */
 
-.FAQ-header {
-  margin-bottom: 24px;
+.static_page {
+  font-size: 18px;
+}
+.static_page p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+
+h1.static_page {
+  margin-top: 36px;
+  margin-bottom:32px;
+  font-size: 30px;
 }
 
 .FAQ-Q {
@@ -700,3 +740,13 @@ body {
   margin-bottom: 30px;
 }
 
+blockquote p {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.embed-responsive.youtube {
+  margin: 40px;
+}
