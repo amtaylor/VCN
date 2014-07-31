@@ -17,6 +17,7 @@ Vcn::Application.routes.draw do
   get "/FAQ", to: "static_pages#FAQ"
   get "/a-competitors-investor-is-your-enemy" , to: "static_pages#a_competitors_investor_is_your_enemy"
   get "/sf-vs-the-peninsula", to: "static_pages#SF_vs_the_peninsula"
+  get "/a-warning-about-competition", to: "static_pages#a_warning_about_competition"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

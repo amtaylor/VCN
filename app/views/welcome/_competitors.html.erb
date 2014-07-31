@@ -40,7 +40,7 @@
 									<% end %>
 
 								</td>
-								<td class="text-center"> <%= company.total_money_raised %> </td>
+								<td class="text-center"> $<%= number_to_human(company.total_money_raised) %> </td>
 								<td class="text-center">
 									<% if company.founded_month.nil? %>
 										<%= company.founded_year %>
