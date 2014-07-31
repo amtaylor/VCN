@@ -7,9 +7,11 @@ gem 'rails', '4.0.0'
 
 #gem 'mysql2'
 
-gem "pg"
+gem 'pg'
 
 gem 'devise'
+gem 'foreman'
+gem 'pry'
 
 
 # Use SCSS for stylesheets
@@ -60,5 +62,3 @@ group :production do
 end
 
 gem 'newrelic_rpm'
-
-

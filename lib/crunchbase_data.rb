@@ -1,24 +1,28 @@
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 module Api
  class CrunchbaseData
-    CRUNCHBASE_API_KEY            = "236qvz77rth5wmmr9g2cqnhr"
-    CRUNCHBASE_COMPANY_NAMESPACE  = "company"
+    BASE_URL = "http://api.crunchbase.com/v/2/"
+    CRUNCHBASE_API_KEY            = "a3b542e33b8bae8c19adbe8265f15998"
+    CRUNCHBASE_COMPANY_NAMESPACE  = "organization/"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
+    CRUNCHBASE_FUNDING_ROUND_NAMESPACE = "funding-round/"
 
-    attr_accessor :company, :uri, :name, :api_key, :exited, :total_money_raised, :founded_year, :founded_month, :number_of_employees, :user
+    attr_accessor :company, :uri, :name, :api_key, :exited, :total_money_raised,
+     :founded_year, :founded_month, :number_of_employees, :user, :path, :funding_round_uuid
 
     def initialize(name = "", user, company)
-      self.name    = name.gsub(' ', '-').gsub(".", "-")
+      self.name    = name.gsub(" ", "-").gsub(".", "-")
       self.api_key = CRUNCHBASE_API_KEY
-      self.uri     = URI("http://api.crunchbase.com/v/1/company/#{self.name}.js?api_key=#{api_key}")
-      self.user    = user      
+      self.uri     = URI("#{BASE_URL}" + "#{CRUNCHBASE_COMPANY_NAMESPACE}" + "#{self.name}?user_key=#{api_key}")
+      self.user    = user
     end
 
     def fetch
       Company.transaction do
         data = fetch_data(self.uri)
         investor_data = parse_json(data)
+        puts "InvestorData=#{investor_data.inspect}"
         create_company
         create_company_investors_for(self.user, investor_data)
       end
@@ -31,7 +35,7 @@ module Api
         when Net::HTTPSuccess then
           response.body
         when Net::HTTPRedirection then
-          location = response['location']
+          location = response["location"]
           warn "redirected to #{location}"
           fetch_data(location)
         else
@@ -41,30 +45,27 @@ module Api
 
     def parse_json(data)
       json_body = JSON.parse(data)
+      api_data       = json_body["data"]
+      relationships  = api_data["relationships"]
+      funding_rounds = relationships["funding_rounds"]["items"]
+      properties     = api_data["properties"]
+      self.name                = properties["name"]
+      self.total_money_raised  = properties["total_funding_usd"]
+      self.number_of_employees = properties["number_of_employees"]
+      self.founded_year        = properties["founded_on_year"]
+      self.founded_month       = properties["founded_on_month"]
 
-      self.name = json_body['name']
-      funding_rounds = json_body['funding_rounds']
-      
-      self.exited = !(json_body['acquisition'] ||  json_body['ipo']).nil?
-      self.total_money_raised = json_body['total_money_raised']
-      self.founded_year = json_body['founded_year']
-      self.founded_month = json_body['founded_month']
-      self.number_of_employees = json_body['number_of_employees']
-
-      investor = []
+      investors = []
       unless funding_rounds.nil?
         funding_rounds.each do |round|
-          investments = round['investments']
-          investments.each do |investment|
-            investment.each do |type, value|
-              unless value.nil?
-                investor <<  (type == "person" ? value["first_name"] + " " + value["last_name"] : value["name"])
-              end
-            end
-          end
+          puts "Round=#{round.inspect}"
+          self.path = round["path"]
+          funding_round_uuid = path.split("/").last
+          funding_data  = fetch_data(path_url_for(path, funding_round_uuid))
+          investors << get_investors_from(funding_data)
         end
       end
-      investor
+      investors.flatten.compact.uniq
     end
 
     def create_company
@@ -75,15 +76,29 @@ module Api
       investor_data.each do |investor|
         company.investors.create!(:name => investor)
       end
-        company.exited = self.exited
-        company.total_money_raised = self.total_money_raised
-        company.founded_year = self.founded_year
-        company.founded_month = self.founded_month
-        company.number_of_employees = self.number_of_employees
-        company.name = self.name
-        company.save!
-        user.user_companies.create!(:company => company)
-        company.investors
+      company.name                = self.name
+      company.total_money_raised  = self.total_money_raised
+      company.number_of_employees = self.number_of_employees
+      company.founded_year        = self.founded_year
+      company.founded_month       = self.founded_month
+      company.save!
+      user.user_companies.create!(:company => company)
+      company.investors
+    end
+
+    def path_url_for(path, funding_round_uuid)
+      BASE_URL + CRUNCHBASE_FUNDING_ROUND_NAMESPACE + "#{funding_round_uuid}" + "?user_key=#{self.api_key}"
+    end
+
+    def get_investors_from(funding_data)
+      data          = JSON.parse(funding_data)["data"]
+      relationships =  data["relationships"]
+      return unless relationships.has_key?("investments")
+      investments   = relationships["investments"]
+      investments["items"].map do |item|
+        investor = item["investor"]
+        investor["type"] == "Person" ? (investor["first_name"] + " " + investor["last_name"]) : investor["name"]
+      end.uniq
     end
 
   end
