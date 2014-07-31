@@ -151,7 +151,6 @@ a:focus {
 
 .nav .btn-link{
   margin-left: 0px;
-  padding-left:;
 }
 
 .FAQ-link {
@@ -725,6 +724,11 @@ body {
   margin-bottom: 20px;
 }
 
+.static_page ol {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
 
 h1.static_page {
   margin-top: 36px;
