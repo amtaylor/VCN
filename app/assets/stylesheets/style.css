@@ -161,6 +161,20 @@ a:focus {
   right: auto;
 }
 
+.navbar-default .navbar-toggle {
+  border: none;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: inherit;
+}
+
+@media (max-width: 767px) {
+  .nav>li>a {
+    display: inline-block;
+  }
+}
+
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
   background-color: #C92229;
   color: white;
@@ -230,6 +244,13 @@ a:focus {
   min-height: 500px;
 
 }
+
+@media (max-width: 480px) {
+  .info3 {
+    background-image: none!important;
+  }
+}
+
 
 @media (max-width: 767px) {
   
@@ -341,11 +362,24 @@ button.opn {
   margin-left:30px;
 }
 
+
 @media (max-width: 480px) {
   
   #homepage-add-companies {
     margin-left: 0px;
     margin-right: 0px;
+  }
+
+  .form-group.add {
+    margin-bottom: 0px;
+  }
+
+}
+
+@media (max-width: 380px) {
+  
+  #homepage-add-companies {
+    width: 100%;
   }
 
 }
