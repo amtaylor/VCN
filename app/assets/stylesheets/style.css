@@ -54,6 +54,8 @@ a:focus {
 	margin-left:8px;
 }
 
+
+
 /* nav bar */
 
 .navbar {
@@ -100,6 +102,11 @@ a:focus {
 
 .btn-danger {
 	background-color: #C92229;
+  border-color: #C92229;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
+  border-color: #C92229;
 }
 
 .navbar-default .navbar-nav>li>a.btn-default {
@@ -119,7 +126,7 @@ a:focus {
 
 .navbar-default .navbar-nav>li>a.btn-danger:hover {
 	color: #C92229;
-	font-weight: bold;
+	/* font-weight: bold; */
 	background-color: #ffffff;
 }
 
@@ -396,7 +403,7 @@ button.opn {
 .info #homepage-add-companies .btn {
   color: white;
   background-color: #C92229;
-  border-color: #ccc;
+  border-color: #C92229;
 }
 
 #homepage-company-form div.competitor {
@@ -501,7 +508,7 @@ button.opn {
 .footer {
 	border-top: 1px solid gray;
 	font-size: 12px;
-	padding: 7px 0px 20px;
+	padding: 13px 0px 20px;
 	background-color: #f5f5f5;
 }
 
@@ -517,6 +524,10 @@ button.opn {
 	display: none;
 }
 
+#twitter-widget-0 .btn .label {
+  color: #C92229;
+}
+
 
 /* from bootstrap theme css file */
 
@@ -530,13 +541,16 @@ button.opn {
 
 
 .alert-warning {
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#fcf8e3), to(#f8efc0));
+  /* background-image: -webkit-gradient(linear, left 0%, left 100%, from(#fcf8e3), to(#f8efc0));
   background-image: -webkit-linear-gradient(top, #fcf8e3, 0%, #f8efc0, 100%);
   background-image: -moz-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
-  background-image: linear-gradient(to bottom, #fcf8e3 0%, #f8efc0 100%);
+  background-image: linear-gradient(to bottom, #fcf8e3 0%, #f8efc0 100%);*/
   background-repeat: repeat-x;
-  border-color: #f5e79e;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+  border-color: #ccc;
+  color: rgb(51, 51, 51);
+  border-width: 2px;
+  border-radius: 0.25em;
+  /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0); */
 }  
 
 
@@ -698,6 +712,7 @@ body {
   height: 60px;
 }
 
+
 /* VCN Authentication
 -------------------------------------------------- */
 
@@ -846,3 +861,47 @@ p {
 .static_page p.small {
   font-size: 70%;
 }
+
+
+/* Getting rid of the more rounded corners */
+
+.btn {
+  /* border-radius: 0px; */
+  border-radius: 0.25em;
+  border-width: 2px;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: none;
+}
+
+.form-control {
+  /* border-radius: 0px; */
+  border-radius: 0.25em;
+  border-width: 2px;
+}
+
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-top-color: white;
+  border-left: white;
+  border-right: white;
+  border-radius: 0px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+#homepage-add-companies {
+  /* border-radius: 0px; */
+  border-radius: 0.25em;
+  text-align: left;
+  border: 2px;
+  box-shadow: none;
+
+}
+
+
+
+
+
