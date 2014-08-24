@@ -30,8 +30,9 @@ class CompaniesController < ApplicationController
 
   def add_companies
     begin
-      Api::CrunchbaseData.new(params[:name], user, @company).fetch
+      Api::CrunchbaseData.new(params[:name], user, false).fetch
     rescue Exception => e
+      Rails.logger.debug "Exception Caught=#{e.inspect}"
       render :json => {:status => "Company Doesn't Exist"}
     end
   end
