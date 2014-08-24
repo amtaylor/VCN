@@ -13,6 +13,10 @@ gem 'devise'
 gem 'foreman'
 gem 'pry'
 
+#Caching
+gem 'dalli'
+gem 'memcachier'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

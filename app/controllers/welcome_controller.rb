@@ -1,36 +1,39 @@
 class WelcomeController < ApplicationController
 	before_filter :require_companies
 	before_filter :set_user_registered
-  	
-  	#TODO fix by creating temporary user
-  	def index  	  
-  	  if @companies.nil? || user.nil?
-  	    @investors = []	
-  	  else
-  	  	Rails.logger.debug "Investors=NIL"
-  	  	@investors = UserCompany.investor_names_for_user_companies(user).uniq.sort_by { |x| x.name}
-  	  end
-	end
 
-	def companylist 
-	  render :partial => 'competitorlist.html.erb'	
+  def index
+    @investors = @companies.nil? || user.nil? ? [] : sorted_investor_names
+  end
+
+	def companylist
+	  render :partial => 'competitorlist.html.erb'
 	end
 
 	def investorlist
-	  @investors = UserCompany.investor_names_for_user_companies(user).uniq.sort_by { |x| x.name}
-	  render :partial => 'investors.html.erb'	
+	  @investors = sorted_investor_names
+	  render :partial => 'investors.html.erb'
 	end
 
 	def companylistfulldata
 	  render :partial => 'competitors.html.erb'
 	end
 
-	def require_companies	  
-	  @companies ||= @user.user_companies.nil? ? [] : @user.user_companies.map(&:company).compact.sort_by { |x| x.name}
+	def require_companies
+	  uc = Rails.cache.fetch("user:#{user.id}:companies", :force => false) do
+			user.user_companies
+		end
+	  @companies = uc.nil? ? [] : uc.map(&:company)
 	end
 
-	def set_user_registered	  
-	  @user_registered ||= !/guest/.match(@user.email)
+	def set_user_registered
+	  @user_registered ||= !/guest/.match(user.email)
+	end
+
+	private
+
+	def sorted_investor_names
+		UserCompany.investor_names_for_user_companies(user).uniq.sort_by { |x| x.name}
 	end
 
 end

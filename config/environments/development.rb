@@ -17,6 +17,9 @@ Vcn::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
+  #Testing memcached
+  config.cache_store = :dalli_store
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 

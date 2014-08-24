@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery 
+  protect_from_forgery
   before_filter :user
 
   def user
-    Rails.logger.debug "UserIs=#{current_or_guest_user.inspect}"
     @user ||= current_or_guest_user
   end
 
@@ -13,7 +12,7 @@ class ApplicationController < ActionController::Base
   def current_or_guest_user
     if current_user
       if session[:guest_user_id]
-        convert_guest_to_current(guest_user)        
+        convert_guest_to_current(guest_user)
       end
       current_user
     else
@@ -21,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def guest_user          
+  def guest_user
     @cached_guest_user ||= (User.find_by_id(session[:guest_user_id]) || create_guest_user)
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
      Rails.logger.debug "Couldn't find user using session =#{session[:guest_user_id]}"
@@ -35,8 +34,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def convert_guest_to_current(guest_user) 
-    if current_user.sign_in_count <= 1   
+  def convert_guest_to_current(guest_user)
+    if current_user.sign_in_count <= 1
       current_user.user_companies = guest_user.user_companies.dup
       current_user.save!
       guest_user.destroy

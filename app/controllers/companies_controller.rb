@@ -3,7 +3,9 @@ class CompaniesController < ApplicationController
   before_filter :add_companies, :only => [:index]
 
   def index
-    @companies = user.user_companies
+    @companies = Rails.cache.fetch("user:#{user.id}:companies", :force => true) do
+      user.user_companies
+    end
     if @companies.empty?
       render :json => {:status => "Company Doesn't Exist"}
     else
@@ -14,7 +16,7 @@ class CompaniesController < ApplicationController
   def destroy
     company = @user.user_companies.where(:company_id => params[:id]).first
     if company.nil?
-      flash[:error] = "Company doesn't exist" 
+      flash[:error] = "Company doesn't exist"
     else
       company.destroy
       flash[:success] = "Company deleted."
@@ -26,9 +28,9 @@ class CompaniesController < ApplicationController
 
   private
 
-  def add_companies    
+  def add_companies
     begin
-      Api::CrunchbaseData.new(params[:name], user, @company).fetch    
+      Api::CrunchbaseData.new(params[:name], user, @company).fetch
     rescue Exception => e
       render :json => {:status => "Company Doesn't Exist"}
     end

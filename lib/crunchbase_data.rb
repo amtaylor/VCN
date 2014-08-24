@@ -19,13 +19,10 @@ module Api
     end
 
     def fetch
-      Company.transaction do
-        data = fetch_data(self.uri)
-        investor_data = parse_json(data)
-        puts "InvestorData=#{investor_data.inspect}"
-        create_company
-        create_company_investors_for(self.user, investor_data)
-      end
+      data = fetch_data(self.uri)
+      investor_data = parse_json(data)
+      create_company
+      create_company_investors_for(self.user, investor_data)
     end
 
     def fetch_data(url)
@@ -58,7 +55,6 @@ module Api
       investors = []
       unless funding_rounds.nil?
         funding_rounds.each do |round|
-          puts "Round=#{round.inspect}"
           self.path = round["path"]
           funding_round_uuid = path.split("/").last
           funding_data  = fetch_data(path_url_for(path, funding_round_uuid))

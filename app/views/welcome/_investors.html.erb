@@ -17,33 +17,33 @@
 						<tr>
 							<td> <%= investor.name %> </td>
 							<td>
-								<% Investor.company_for_investor(@user, investor).each do |vc_company| %>
+								<% Investor.companies_for_investor(@user, investor).each do |vc_company| %>
 
 									<% if vc_company.exited? %>
 										<span class="text-muted">
 											<%=  vc_company.name %>
 											(exited)
-											<%= "," unless vc_company == Investor.company_for_investor(@user,investor).last %>
-											
+											<%= "," unless vc_company == Investor.companies_for_investor(@user,investor).last %>
+
 										</span>
 									<% else %>
-										<%=  vc_company.name %><%= "," unless vc_company == Investor.company_for_investor(@user, investor).last %>
+										<%=  vc_company.name %><%= "," unless vc_company == Investor.companies_for_investor(@user, investor).last %>
 									<% end %>
 								<% end %>
-								
+
 							</td>
 						</tr>
 					<% end %>
 				<% else %>
-					
+
 						<tr>
 							<td><span class="text-muted">None</span></td>
 							<td><span class="text-muted">None</span></td>
 						</tr>
-					
+
 				<% end %>
 
-				<!-- original sample table 
+				<!-- original sample table
 				<tr>
 					<td>Andressen Horowitz</td>
 					<td>Square, Twitter, <span class="text-muted"> Google (exited)</span> </td>
