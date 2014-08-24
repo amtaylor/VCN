@@ -6,7 +6,7 @@ module Api
     def self.check_for_updates
       begin
         companies = Company.all.select(:id, :name).uniq
-        users     = UserCompany.where("company_id in (?)", companies.map(&:id)).map(&:user).uniq
+        users     = UserCompany.where("company_id in (?)", companies.map(&:id)).map(&:user).compact.uniq
         companies.each do |company|
           users.each do |user|
             next if /guest/.match(user.email)
