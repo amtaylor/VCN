@@ -9,20 +9,34 @@ module Api
     CRUNCHBASE_FUNDING_ROUND_NAMESPACE = "funding-round/"
 
     attr_accessor :company, :uri, :name, :api_key, :exited, :total_money_raised,
-     :founded_year, :founded_month, :number_of_employees, :user, :path, :funding_round_uuid
+     :founded_year, :founded_month, :number_of_employees, :user, :path, :funding_round_uuid,
+     :check_for_update
 
-    def initialize(name = "", user, company)
+    def initialize(name = "", user, check_for_update)
       self.name    = name.gsub(" ", "-").gsub(".", "-")
       self.api_key = CRUNCHBASE_API_KEY
       self.uri     = URI("#{BASE_URL}" + "#{CRUNCHBASE_COMPANY_NAMESPACE}" + "#{self.name}?user_key=#{api_key}")
       self.user    = user
+      self.check_for_update = check_for_update
     end
 
     def fetch
       data = fetch_data(self.uri)
       investor_data = parse_json(data)
       create_company
-      create_company_investors_for(self.user, investor_data)
+      new_investors = investor_data & company.investors.map(&:name)
+
+      if check_for_update
+        if new_investors.size > 0
+          send_investor_updates_for(company.name, new_investors)
+          create_company_investors_for(self.user, new_investors)
+        else
+          return
+        end
+      else
+        create_user_company
+        create_company_investors_for(self.user, investor_data)
+      end
     end
 
     def fetch_data(url)
@@ -66,19 +80,22 @@ module Api
 
     def create_company
       self.company ||= Company.find_or_create_by_name(:name => self.name)
-    end
-
-    def create_company_investors_for(user, investor_data)
-      investor_data.each do |investor|
-        company.investors.create!(:name => investor)
-      end
       company.name                = self.name
       company.total_money_raised  = self.total_money_raised
       company.number_of_employees = self.number_of_employees
       company.founded_year        = self.founded_year
       company.founded_month       = self.founded_month
       company.save!
+    end
+
+    def create_user_company
       user.user_companies.create!(:company => company)
+    end
+
+    def create_company_investors_for(user, investor_data)
+      investor_data.each do |investor|
+        company.investors.create!(:name => investor)
+      end
       company.investors
     end
 
@@ -97,5 +114,8 @@ module Api
       end.uniq
     end
 
+    def send_investor_updates_for(company_name, new_investors)
+      UserCompanyFundingMailer.delay.funding_update_email(user, company_name, new_investors)
+    end
   end
 end

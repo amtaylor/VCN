@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Hello,  </p>
+    <p>
+      we wanted to let you know that a company you were interested in got recently funded!<br>
+    </p>
+    <p><%= @company %> got funded recently with the following investors: </p>
+      <% @investors.each do |investor| %>
+        <li>  <%= investor %></li>
+      <% end %>
+    <p>
+      To check for updates and follow more companies and their investors, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks!</p>
+    <p>VCNemesis Team</p>
+  </body>
+</html>
