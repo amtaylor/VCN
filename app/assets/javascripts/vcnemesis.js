@@ -295,10 +295,14 @@ $(document).ready(function(){
 	   if ($(window).scrollTop() > 0 ) {
 	   	//$('.info2').css( "background-image", "url('../images/rw(flip,bw).jpg')" );
 		$('.info3').css( "background-image", "url('../images/SocNet2(float)bw(red-eyes).png')" );
+	   	$('.jt-description').hide();
+	   	$('.rw-description').hide();
 	   }
 	   else {
 		//$('.info2').css( "background-image", "url('../images/rw(flip).jpg')" );
 		$('.info3').css( "background-image", "url('../images/SocNet2(float)bw.png')" );
+		$('.jt-description').show();
+		$('.rw-description').show();
 	   }
 	});
 

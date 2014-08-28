@@ -38,8 +38,9 @@ a {
 a:hover {
   color: #C92229;
   text-decoration: none;
-  /* text-shadow: 0 0px 6px rgba(35,35,35,0.6); */
-  color: rgb(115,130,162);
+  text-decoration: underline;
+  /* color: rgb(115,130,162); */
+  /* text-shadow: 0 0px 6px rgba(35,35,35,0.6); */ 
 }
 
 a:focus {
@@ -252,7 +253,7 @@ a:focus {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 735px) { /* smallest width without cutting of JT's head */
   .info3 {
     background-image: none!important;
   }
@@ -414,6 +415,35 @@ button.opn {
   display: inline-block;
 }
 
+
+.rw-description {
+  font-size: 10px;
+  position: absolute;
+  bottom: 4px;
+  right: 10px;
+  z-index: 10;
+}
+
+.jt-description {
+  font-size: 10px;
+  color: gray;
+  position: absolute;
+  bottom: 4px;
+  right: 232px;
+  z-index: 10;
+}
+
+
+@media (max-width: 735px) { /* smallest width without cutting of JT's head */
+  .jt-description {
+    display: none!important;
+  }
+
+  .rw-description {
+    display: none!important;
+  }
+
+}
 
 
 /* parallax stuff */
