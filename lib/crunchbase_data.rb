@@ -2,7 +2,7 @@ require "net/http"
 require "json"
 module Api
  class CrunchbaseData
-    BASE_URL = "http://api.crunchbase.com/v/2/"
+    BASE_URL = "https://api.crunchbase.com/v/2/"
     CRUNCHBASE_API_KEY            = "a3b542e33b8bae8c19adbe8265f15998"
     CRUNCHBASE_COMPANY_NAMESPACE  = "organization/"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
