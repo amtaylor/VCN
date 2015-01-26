@@ -3,7 +3,8 @@ require "json"
 module Api
  class CrunchbaseData
     BASE_URL = "https://api.crunchbase.com/v/2/"
-    CRUNCHBASE_API_KEY            = "a3b542e33b8bae8c19adbe8265f15998"
+    CRUNCHBASE_API_KEY_1          = "a3b542e33b8bae8c19adbe8265f15998"
+    CRUNCHBASE_API_KEY_2          = "80bdee25edda4e05564298b687e3c821"
     CRUNCHBASE_COMPANY_NAMESPACE  = "organization/"
     CRUNCHBASE_NAME_NAMESPACE     = "name"
     CRUNCHBASE_FUNDING_ROUND_NAMESPACE = "funding-round/"
@@ -14,13 +15,14 @@ module Api
 
     def initialize(name = "", user, check_for_update)
       self.name    = name.gsub(" ", "-").gsub(".", "-")
-      self.api_key = CRUNCHBASE_API_KEY
+      self.api_key = Time.now > (Time.now.beginning_of_hour + 30.minutes) ? CRUNCHBASE_API_KEY_2 : CRUNCHBASE_API_KEY_1
       self.uri     = URI("#{BASE_URL}" + "#{CRUNCHBASE_COMPANY_NAMESPACE}" + "#{self.name}?user_key=#{api_key}")
       self.user    = user
       self.check_for_update = check_for_update
     end
 
     def fetch
+      Rails.logger.debug "APIKEY=#{self.api_key}"
       data = fetch_data(self.uri)
       investor_data = parse_json(data)
       create_company
