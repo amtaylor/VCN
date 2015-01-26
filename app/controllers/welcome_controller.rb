@@ -21,9 +21,9 @@ class WelcomeController < ApplicationController
 
 	def require_companies
 	  uc = Rails.cache.fetch("user:#{user.id}:companies", :force => false) do
-			user.user_companies
+			user.user_companies.pluck(:company_id)
 		end
-	  @companies = uc.nil? ? [] : uc.map(&:company)
+	  @companies = uc.nil? ? [] : Company.where('id in (?)', uc)
 	end
 
 	def set_user_registered

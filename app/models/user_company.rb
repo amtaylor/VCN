@@ -8,7 +8,7 @@ class UserCompany < ActiveRecord::Base
 
   class << self
   	def investor_names_for_user_companies(user)
-      companies = companies_for(user).map(&:company_id)
+      companies = companies_for(user)
       return [] if companies.empty?
       investor_names_for(companies)
   	end
@@ -17,7 +17,7 @@ class UserCompany < ActiveRecord::Base
 
     def companies_for(user, force = false)
       Rails.cache.fetch("user:#{user.id}:companies", :force => force) do
-        user.user_companies
+        user.user_companies.pluck(:company_id)
       end
     end
 
@@ -32,5 +32,5 @@ class UserCompany < ActiveRecord::Base
   def purge_company_cache
     Rails.cache.delete("user:#{self.user.id}:companies")
   end
-  
+
 end

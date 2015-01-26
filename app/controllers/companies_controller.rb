@@ -4,12 +4,12 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Rails.cache.fetch("user:#{user.id}:companies", :force => true) do
-      user.user_companies
+      user.user_companies.pluck(:company_id)
     end
     if @companies.empty?
       render :json => {:status => "Company Doesn't Exist"}
     else
-      @investors = @companies.map(&:company).map(&:investors).first.select(:name).uniq.order("name ASC")
+      @investors = Company.where('id in (?)', @companies).map(&:investors).first.select(:name).uniq.order("name ASC")
     end
   end
 

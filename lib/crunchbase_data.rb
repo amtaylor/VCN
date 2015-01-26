@@ -15,14 +15,13 @@ module Api
 
     def initialize(name = "", user, check_for_update)
       self.name    = name.gsub(" ", "-").gsub(".", "-")
-      self.api_key = Time.now > (Time.now.beginning_of_hour + 30.minutes) ? CRUNCHBASE_API_KEY_2 : CRUNCHBASE_API_KEY_1
+      self.api_key = Time.now > (Time.now.beginning_of_hour + 30.minutes) ? CRUNCHBASE_API_KEY_1 : CRUNCHBASE_API_KEY_2
       self.uri     = URI("#{BASE_URL}" + "#{CRUNCHBASE_COMPANY_NAMESPACE}" + "#{self.name}?user_key=#{api_key}")
       self.user    = user
       self.check_for_update = check_for_update
     end
 
-    def fetch
-      Rails.logger.debug "APIKEY=#{self.api_key}"
+    def fetch      
       data = fetch_data(self.uri)
       investor_data = parse_json(data)
       create_company
