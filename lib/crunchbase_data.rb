@@ -21,7 +21,7 @@ module Api
       self.check_for_update = check_for_update
     end
 
-    def fetch      
+    def fetch
       data = fetch_data(self.uri)
       investor_data = parse_json(data)
       create_company
@@ -95,7 +95,7 @@ module Api
 
     def create_company_investors_for(user, investor_data)
       investor_data.each do |investor|
-        company.investors.create!(:name => investor)
+        company.investors.find_or_create_by(:name => investor)
       end
       company.investors
     end
