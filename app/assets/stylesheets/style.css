@@ -233,7 +233,7 @@ a:focus {
 	padding: 20px 0px 0px 0px;
   /* background-image: url('../images/SocNet2(float,red).png'); */
   background-image: url('../images/SocNet2(float)bw.png');
-  /* background-image: none!important; hide JT */
+  background-image: none!important; /* hide JT */
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: auto 97%;
@@ -434,7 +434,7 @@ button.opn {
   bottom: 4px;
   right: 232px;
   z-index: 10;
-  /* display: none!important; hide JT */
+  display: none!important; /* hide JT */
 }
 
 
@@ -936,10 +936,10 @@ p {
 }
 
 .info3 {
-  /* background-image: none!important; hide JT */
+  background-image: none!important; /* hide JT */
 }
 
 .jt-description {
-  /* display: none!important; hide JT */
+  display: none!important; /* hide JT */
 }
 
